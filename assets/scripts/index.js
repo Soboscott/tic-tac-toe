@@ -12,3 +12,15 @@ $(() => {
 
 // use require without a reference to ensure a file is bundled
 require('./example');
+
+const gameBoard = {
+  board: [0, 1, 2,
+          3, 4, 5,
+          6, 7, 8],
+  player: ["x", "o"]
+};
+
+
+module.export = {
+  gameBoard,
+};
