@@ -17,9 +17,21 @@ const gameBoard = {
   board: [0, 1, 2,
           3, 4, 5,
           6, 7, 8],
-  player: ["x", "o"]
-};
+  player: [
+    "x",
+    "o"
+  ],
+  setBoard: function () {
+    for (let i = 0; i < this.board.length; i++) {
+      for (let j = 0; j < this.player.length; j++) {
+        let square = this.board[i];
+        let assign = square.replaceWith(this.player[j]);
 
+        return assign;
+      }
+    }
+  }
+};
 
 module.export = {
   gameBoard,
