@@ -17,10 +17,16 @@ const gameBoard = {
   board: [0, 1, 2,
           3, 4, 5,
           6, 7, 8],
-  player: [
-    "x",
-    "o"
-  ]
+  player: "x",
+
+  setNextPlayer: function() {
+    if (this.player === "x") {
+      this.player = "o";
+    } else {
+      this.player = "x";
+    }
+    return this.player;
+  }
 };
 
 // const setBoard = function () {
@@ -43,7 +49,7 @@ const winnerIs = function (player) {
 const announceWinner = function () {
   let winner;
   for (let i = 0; i < this.player.length; i++) {
-    if (winnerIs(this.player[i])) {
+    if (winnerIs(this.player[i]) === true) {
       winner = this.player[i];
     }
     // if (winner === this.player[i]) {
