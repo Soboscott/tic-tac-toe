@@ -33,27 +33,23 @@ const gameBoard = {
 //   return newBoard;
 // };
 
-// const winRow = function () {};
-// const winColumn = function () {};
-// const winDiag = function () {};
-// const winnerIs = function (player) {
-//   return winRow(player) || winColumn(player) || winDiag(player);
-// };
-// const winner = function() {
-//   if (winnerIs('x')) {
-//     return 'x';
-//   } else if (winnerIs('o')) {
-//     return 'o';
-//   }
-//   return null;
-// };
+const winRow = function () {};
+const winColumn = function () {};
+const winDiag = function () {};
+const winnerIs = function (player) {
+  return winRow(player) || winColumn(player) || winDiag(player);
+};
+
 const announceWinner = function () {
   let winner;
   for (let i = 0; i < this.player.length; i++) {
-    if (winner === this.player[i]) {
+    if (winnerIs(this.player[i])) {
+      winner = this.player[i];
+    }
+    // if (winner === this.player[i]) {
       return "The winner is player " + this.player[i] + "!";
     }
-  }
+  };
 };
 
 module.export = {
