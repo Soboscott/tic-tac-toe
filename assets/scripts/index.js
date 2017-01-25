@@ -30,34 +30,36 @@ let game = {
   },
 
   yourMove: function () {
-    for (let i=0; i < this.gameBoard.length; i++) {
+    for (let i = 0; i < this.gameBoard.length; i++) {
       if (this.player === 'x' && this.gameBoard[i] === '') {
         this.gameBoard[i] = 'x';
       } else if (this.player === 'x' && this.gameBoard[i] !== '') {
         this.gameBoard[i] = this.gameBoard[i];
       }
     }
+
     return this.gameBoard;
   },
 };
 
-// const player = [
-//   'x',
-//   'o',
-// ];
+const player = [
+  'x',
+  'o',
+];
 
-// const yourMove = function () {
-//   for (let i = 0; i < player.length; i++) {
-//     for (let j=0; j < gameBoard.length; j++) {
-//       if (player[i] && gameBoard[j] === '') {
-//         gameBoard[j] = player[i];
-//       } else if (player[i] && gameBoard[j] !== '') {
-//         gameBoard[j] = gameBoard[j];
-//       }
-//     }
-//   }
-//   return gameBoard;
-// };
+const yourMove = function () {
+  for (let i = 0; i < player.length; i++) {
+    for (let j = 0; j < this.gameBoard.length; j++) {
+      if (player[i] && this.gameBoard[j] === '') {
+        this.gameBoard[j] = player[i];
+      } else if (player[i] && this.gameBoard[j] !== '') {
+        this.gameBoard[j] = this.gameBoard[j];
+      }
+    }
+  }
+
+  return this.gameBoard;
+};
 
 const threeInARow = function (player, cellOne, cellTwo, cellThree) {
   if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
@@ -67,32 +69,32 @@ const threeInARow = function (player, cellOne, cellTwo, cellThree) {
 };
 
 const winRow = function (player) {
-  if (threeInARow(player, gameBoard.board[0], gameBoard.board[1], gameBoard.board[2]) ||
-  threeInARow(player, gameBoard.board[3], gameBoard.board[4], gameBoard.board[5]) ||
-  threeInARow(player, gameBoard.board[6], gameBoard.board[7], gameBoard.board[8])) {
+  if (threeInARow(player, game.board[0], game.board[1], game.board[2]) ||
+  threeInARow(player, game.board[3], game.board[4], game.board[5]) ||
+  threeInARow(player, game.board[6], game.board[7], game.board[8])) {
 
-     return true;
-   }
- };
+    return true;
+  }
+};
 
- const winColumn = function (player) {
-   if (threeInARow(player, gameBoard.board[0], gameBoard.board[3], gameBoard.board[6]) ||
-   threeInARow(player, gameBoard.board[1], gameBoard.board[4], gameBoard.board[7]) ||
-   threeInARow(player, gameBoard.board[2], gameBoard.board[5], gameBoard.board[8])) {
+const winColumn = function (player) {
+  if (threeInARow(player, game.board[0], game.board[3], game.board[6]) ||
+  threeInARow(player, game.board[1], game.board[4], game.board[7]) ||
+  threeInARow(player, game.board[2], game.board[5], game.board[8])) {
 
-     return true;
-   }
- };
+    return true;
+  }
+};
 
- const winDiag = function (player) {
-   if (threeInARow(player, gameBoard.board[0], gameBoard.board[4], gameBoard.board[8]) ||
-   threeInARow(player, gameBoard.board[2], gameBoard.board[4], gameBoard.board[6])) {
+const winDiag = function (player) {
+  if (threeInARow(player, game.board[0], game.board[4], game.board[8]) ||
+  threeInARow(player, game.board[2], game.board[4], game.board[6])) {
 
-     return true;
-   }
- };
+    return true;
+  }
+};
 
-const winnerIs = function(player) {
+const winnerIs = function (player) {
   let winner = '';
   if (winRow || winColumn || winDiag) {
     winner = player;
@@ -101,5 +103,6 @@ const winnerIs = function(player) {
 
 module.exports = {
   game,
+  yourMove,
   winnerIs,
 };
