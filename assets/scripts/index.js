@@ -1,17 +1,17 @@
 'use strict';
 
-// const setAPIOrigin = require('../../lib/set-api-origin');
-// const config = require('./config');
-//
-// $(() => {
-//   setAPIOrigin(location, config);
-// });
-//
-// // use require with a reference to bundle the file and use it in this file
-// // const example = require('./example');
-//
-// // use require without a reference to ensure a file is bundled
-// require('./example');
+const setAPIOrigin = require('../../lib/set-api-origin');
+const config = require('./config');
+
+$(() => {
+  setAPIOrigin(location, config);
+});
+
+// use require with a reference to bundle the file and use it in this file
+// const example = require('./example');
+
+// use require without a reference to ensure a file is bundled
+require('./example');
 
 const gameBoard = {
     cell0: null,
@@ -43,8 +43,17 @@ const player = [
 //   },
 // };
 
+const assignBox = function () {
+  for (let i = 0; i < gameBoard.length; i++) {
+    let box = document.getElementsByClassName('box');
+    box = box.setAttribute('data-box', gameBoard[i]);
+    for (let j = 0; j < player.length; j++) {
+      box.setAttribute('data-box', player[j]);
+    }
+  }
+};
+
 const displaySymbol = function () {
-  console.log(this.getAttribute('data-box'));
   if (this.getAttribute('data-box') === 'x') {
     return 'x';
   } else {
@@ -52,15 +61,8 @@ const displaySymbol = function () {
   }
 };
 
-const assignBox = function () {
-  for (let i = 0; i < gameBoard.length; i++) {
-    for (let j = 0; j < player.length; j++) {
-      let box = document.getElementsByClassName('box');
-      box.setAttribute('data-box', player[j]);
-      box.on('click', displaySymbol);
-    }
-  }
-};
+$("box").on('click', assignBox);
+$("box").on('click', displaySymbol);
 
 const threeInARow = function (player, cellOne, cellTwo, cellThree) {
   if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
