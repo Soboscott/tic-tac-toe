@@ -27,14 +27,16 @@ let game = {
     } else {
       this.player = 'x';
     }
+    return this.player;
   },
 
-  yourMove: function () {
+  yourMove: function (playerSymbol) {
     for (let i = 0; i < this.gameBoard.length; i++) {
-      if (this.player === 'x' && this.gameBoard[i] === '') {
-        this.gameBoard[i] = 'x';
-      } else if (this.player === 'x' && this.gameBoard[i] !== '') {
+      if (this.player === playerSymbol && this.gameBoard[i] !== '') {
         this.gameBoard[i] = this.gameBoard[i];
+      } else if (this.player === playerSymbol && this.gameBoard[i] === '') {
+        this.gameBoard[i] = playerSymbol;
+        game.setNextPlayer();
       }
     }
 
@@ -42,24 +44,24 @@ let game = {
   },
 };
 
-const player = [
-  'x',
-  'o',
-];
-
-const yourMove = function () {
-  for (let i = 0; i < player.length; i++) {
-    for (let j = 0; j < this.gameBoard.length; j++) {
-      if (player[i] && this.gameBoard[j] === '') {
-        this.gameBoard[j] = player[i];
-      } else if (player[i] && this.gameBoard[j] !== '') {
-        this.gameBoard[j] = this.gameBoard[j];
-      }
-    }
-  }
-
-  return this.gameBoard;
-};
+// const player = [
+//   'x',
+//   'o',
+// ];
+//
+// const yourMove = function () {
+//   for (let i = 0; i < player.length; i++) {
+//     for (let j = 0; j < this.gameBoard.length; j++) {
+//       if (player[i] && this.gameBoard[j] === '') {
+//         this.gameBoard[j] = player[i];
+//       } else if (player[i] && this.gameBoard[j] !== '') {
+//         this.gameBoard[j] = this.gameBoard[j];
+//       }
+//     }
+//   }
+//
+//   return this.gameBoard;
+// };
 
 const threeInARow = function (player, cellOne, cellTwo, cellThree) {
   if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
@@ -103,6 +105,6 @@ const winnerIs = function (player) {
 
 module.exports = {
   game,
-  yourMove,
+  // yourMove,
   winnerIs,
 };
