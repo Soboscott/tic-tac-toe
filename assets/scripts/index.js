@@ -14,14 +14,23 @@
 // require('./example');
 
 const gameBoard = {
-  board: [
-    '', '', '',
-    '', '', '',
-    '', '', '',
-  ],
-  player: 'x',
+    cell0: null,
+    cell1: null,
+    cell2: null,
+    cell3: null,
+    cell4: null,
+    cell5: null,
+    cell6: null,
+    cell7: null,
+    cell8: null,
+  };
 
-  setNextPlayer: function () {
+const player = {
+    playerX: "x",
+    playerY: "y",
+};
+
+  const setNextPlayer = function () {
     if (this.player === 'x') {
       this.player = 'o';
     } else {
