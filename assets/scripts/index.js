@@ -86,5 +86,9 @@ const winnerIs = function (player) {
 
 module.exports = {
   game,
+  threeInARow,
+  winRow,
+  winColumn,
+  winDiag,
   winnerIs,
 };
