@@ -33,8 +33,10 @@ const gameBoard = {
 };
 
 const threeInARow = function (player, cellOne, cellTwo, cellThree) {
+  if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
 
-  return (cellOne === player) && (cellTwo === player) && (cellThree === player);
+    return true;
+  }
 };
 
 const winRow = function (player) {
