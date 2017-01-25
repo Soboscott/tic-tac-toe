@@ -1,41 +1,63 @@
 'use strict';
 
-const setAPIOrigin = require('../../lib/set-api-origin');
-const config = require('./config');
+// const setAPIOrigin = require('../../lib/set-api-origin');
+// const config = require('./config');
+//
+// $(() => {
+//   setAPIOrigin(location, config);
+// });
+//
+// // use require with a reference to bundle the file and use it in this file
+// // const example = require('./example');
+//
+// // use require without a reference to ensure a file is bundled
+// require('./example');
 
-$(() => {
-  setAPIOrigin(location, config);
-});
+let game = {
+  gameBoard: [
+    '', '', '',
+    '', '', '',
+    '', '', '',
+  ],
+  player: 'x',
 
-// use require with a reference to bundle the file and use it in this file
-// const example = require('./example');
+  setNextPlayer: function () {
+    if (this.player === 'x') {
+      this.player = 'o';
+    } else {
+      this.player = 'x';
+    }
+  },
 
-// use require without a reference to ensure a file is bundled
-require('./example');
-
-let gameBoard = [
-  '', '', '',
-  '', '', '',
-  '', '', '',
-];
-
-const player = [
-  'x',
-  'o',
-];
-
-const yourMove = function () {
-  for (let i = 0; i < player.length; i++) {
-    for (let j=0; j < gameBoard.length; j++) {
-      if (player[i] && gameBoard[j] === '') {
-        gameBoard[j] = player[i];
-      } else if (player[i] && gameBoard[j] !== '') {
-        gameBoard[j] = gameBoard[j];
+  yourMove: function () {
+    for (let i=0; i < this.gameBoard.length; i++) {
+      if (this.player === 'x' && this.gameBoard[i] === '') {
+        this.gameBoard[i] = 'x';
+      } else if (this.player === 'x' && this.gameBoard[i] !== '') {
+        this.gameBoard[i] = this.gameBoard[i];
       }
     }
-  }
-  return gameBoard;
+    return this.gameBoard;
+  },
 };
+
+// const player = [
+//   'x',
+//   'o',
+// ];
+
+// const yourMove = function () {
+//   for (let i = 0; i < player.length; i++) {
+//     for (let j=0; j < gameBoard.length; j++) {
+//       if (player[i] && gameBoard[j] === '') {
+//         gameBoard[j] = player[i];
+//       } else if (player[i] && gameBoard[j] !== '') {
+//         gameBoard[j] = gameBoard[j];
+//       }
+//     }
+//   }
+//   return gameBoard;
+// };
 
 const threeInARow = function (player, cellOne, cellTwo, cellThree) {
   if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
@@ -78,6 +100,6 @@ const winnerIs = function(player) {
 };
 
 module.exports = {
-  yourMove,
+  game,
   winnerIs,
 };
