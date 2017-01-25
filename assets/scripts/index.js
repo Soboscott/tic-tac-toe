@@ -42,53 +42,61 @@ let game = {
 
     return this.gameBoard;
   },
-};
 
-const threeInARow = function (player, cellOne, cellTwo, cellThree) {
-  if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
+  threeInARow: function (player, cellOne, cellTwo, cellThree) {
+    if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
 
-    return true;
-  }
-};
+      return true;
+    }
+  },
 
-const winRow = function (player) {
-  if (threeInARow(player, game.board[0], game.board[1], game.board[2]) ||
-  threeInARow(player, game.board[3], game.board[4], game.board[5]) ||
-  threeInARow(player, game.board[6], game.board[7], game.board[8])) {
+  winRow: function (player) {
+    if (this.threeInARow(player, this.gameBoard[0], this.gameBoard[1], this.gameBoard[2]) ||
+    this.threeInARow(player, this.gameBoard[3], this.gameBoard[4], this.gameBoard[5]) ||
+    this.threeInARow(player, this.gameBoard[6], this.gameBoard[7], this.gameBoard[8])) {
 
-    return true;
-  }
-};
+      return true;
+    } else {
 
-const winColumn = function (player) {
-  if (threeInARow(player, game.board[0], game.board[3], game.board[6]) ||
-  threeInARow(player, game.board[1], game.board[4], game.board[7]) ||
-  threeInARow(player, game.board[2], game.board[5], game.board[8])) {
+      return false;
+    }
+  },
 
-    return true;
-  }
-};
+  winColumn: function (player) {
+    if (this.threeInARow(player, this.gameBoard[0], this.gameBoard[3], this.gameBoard[6]) ||
+    this.threeInARow(player, this.gameBoard[1], this.gameBoard[4], this.gameBoard[7]) ||
+    this.threeInARow(player, this.gameBoard[2], this.gameBoard[5], this.gameBoard[8])) {
 
-const winDiag = function (player) {
-  if (threeInARow(player, game.board[0], game.board[4], game.board[8]) ||
-  threeInARow(player, game.board[2], game.board[4], game.board[6])) {
+      return true;
+    } else {
 
-    return true;
-  }
-};
+      return false;
+    }
+  },
 
-const winnerIs = function (player) {
-  let winner = '';
-  if (winRow || winColumn || winDiag) {
-    winner = player;
-  }
+  winDiag: function (player) {
+    if (this.threeInARow(player, this.gameBoard[0], this.gameBoard[4], this.gameBoard[8]) ||
+    this.threeInARow(player, this.gameBoard[2], this.gameBoard[4], this.gameBoard[6])) {
+
+      return true;
+    } else {
+
+      return false;
+    }
+  },
+
+  winnerIs: function (player, opponent) {
+    let winner = '';
+    if (this.winRow(player) === true || this.winColumn(player) === true || this.winDiag(player) === true) {
+      winner = player;
+    } else if (this.winRow(opponent) === true || this.winColumn(opponent) === true || this.winDiag(opponent) === true) {
+      winner = opponent;
+    }
+
+    return winner;
+  },
 };
 
 module.exports = {
   game,
-  threeInARow,
-  winRow,
-  winColumn,
-  winDiag,
-  winnerIs,
 };
