@@ -25,34 +25,42 @@ const gameBoard = {
     cell8: null,
   };
 
-const player = {
-  symbol: 'x',
+const player = [
+  'x',
+  'o',
+];
+// {
+//   symbol: 'x',
+//
+//   setNextPlayer: function () {
+//     if (this.symbol === 'x') {
+//       this.symbol = 'o';
+//     } else {
+//       this.symbol = 'x';
+//     }
+//
+//     return this.symbol;
+//   },
+// };
 
-  setNextPlayer: function () {
-    if (this.symbol === 'x') {
-      this.symbol = 'o';
-    } else {
-      this.symbol = 'x';
-    }
-
-    return this.symbol;
-  },
+const displaySymbol = function () {
+  console.log(this.getAttribute('data-box'));
+  if (this.getAttribute('data-box') === 'x') {
+    return 'x';
+  } else {
+    return 'o';
+  }
 };
 
 const assignBox = function () {
-  let result = '';
   for (let i = 0; i < gameBoard.length; i++) {
-    if (player.symbol === 'x') {
-      result = 'x';
-    } else if (player.symbol === 'o') {
-      result = 'o';
+    for (let j = 0; j < player.length; j++) {
+      let box = document.getElementsByClassName('box');
+      box.setAttribute('data-box', player[j]);
+      box.on('click', displaySymbol);
     }
   }
-
-  return result;
 };
-
-$.box.on('click', assignBox);
 
 const threeInARow = function (player, cellOne, cellTwo, cellThree) {
   if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
