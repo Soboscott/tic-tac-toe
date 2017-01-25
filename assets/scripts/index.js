@@ -86,6 +86,5 @@ const winnerIs = function (player) {
 
 module.exports = {
   game,
-  // yourMove,
   winnerIs,
 };
