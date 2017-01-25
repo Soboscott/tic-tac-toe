@@ -26,18 +26,16 @@ const gameBoard = {
   };
 
 const player = {
-    playerX: "x",
-    playerY: "y",
-};
+  symbol: 'x',
 
-  const setNextPlayer = function () {
-    if (this.player === 'x') {
-      this.player = 'o';
+  setNextPlayer: function () {
+    if (this.symbol === 'x') {
+      this.symbol = 'o';
     } else {
-      this.player = 'x';
+      this.symbol = 'x';
     }
 
-    return this.player;
+    return this.symbol;
   },
 };
 
