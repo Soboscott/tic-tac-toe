@@ -13,121 +13,29 @@ $(() => {
 // use require without a reference to ensure a file is bundled
 require('./example');
 
-const gameBoard = {
-    cell0: null,
-    cell1: null,
-    cell2: null,
-    cell3: null,
-    cell4: null,
-    cell5: null,
-    cell6: null,
-    cell7: null,
-    cell8: null,
-  };
+const gameBoard = [
+  '', '', '',
+  '', '', '',
+  '', '', '',
+];
+
+const winningCombos = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
 
 const player = [
   'x',
   'o',
 ];
-// {
-//   symbol: 'x',
-//
-//   setNextPlayer: function () {
-//     if (this.symbol === 'x') {
-//       this.symbol = 'o';
-//     } else {
-//       this.symbol = 'x';
-//     }
-//
-//     return this.symbol;
-//   },
-// };
 
-const assignBox = function () {
-  for (let i = 0; i < gameBoard.length; i++) {
-    let box = document.getElementsByClassName('box');
-    box = box.setAttribute('data-box', gameBoard[i]);
-    for (let j = 0; j < player.length; j++) {
-      box.setAttribute('data-box', player[j]);
-    }
-  }
-};
-
-const displaySymbol = function () {
-  if (this.getAttribute('data-box') === 'x') {
-    return 'x';
-  } else {
-    return 'o';
-  }
-};
-
-$("box").on('click', assignBox);
-$("box").on('click', displaySymbol);
-
-const threeInARow = function (player, cellOne, cellTwo, cellThree) {
-  if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
-
-    return true;
-  }
-};
-
-const winRow = function (player) {
-  if (threeInARow(player, gameBoard.board[0], gameBoard.board[1], gameBoard.board[2]) ||
-  threeInARow(player, gameBoard.board[3], gameBoard.board[4], gameBoard.board[5]) ||
-  threeInARow(player, gameBoard.board[6], gameBoard.board[7], gameBoard.board[8])) {
-
-    return true;
-  }
-
-};
-
-const winColumn = function (player) {
-  if (threeInARow(player, gameBoard.board[0], gameBoard.board[3], gameBoard.board[6]) ||
-  threeInARow(player, gameBoard.board[1], gameBoard.board[4], gameBoard.board[7]) ||
-  threeInARow(player, gameBoard.board[2], gameBoard.board[5], gameBoard.board[8])) {
-
-    return true;
-  }
-
-};
-
-const winDiag = function (player) {
-  if (threeInARow(player, gameBoard.board[0], gameBoard.board[4], gameBoard.board[8]) ||
-  threeInARow(player, gameBoard.board[2], gameBoard.board[4], gameBoard.board[6])) {
-
-    return true;
-  }
-};
-
-const winnerIs = function (player) {
-  let winner = '';
-  if (winRow(player) || winColumn(player) || winDiag(player)) {
-    winner = player;
-  }
-};
-
-const announceWinner = function () {
-  for (let i = 0; i < this.player.length; i++) {
-    let winner = '';
-    if (winnerIs(this.player[i]) === true) {
-      winner = this.player[i];
-    }
-
-    // if (winner === this.player[i]) {
-    return 'The winner is player ' + this.player[i] + '!';
-  }
-};
-
-// const setBoard = function () {
-//   for (let i = 0; i < this.player.length; i++) {
-//         let square = newBoard[i];
-//         newBoard = square(this.player[j]);
-//       }
-//     };
-//   };
-//   return newBoard;
-// };
 
 module.exports = {
-  gameBoard, announceWinner,
+  gameBoard,
 };
