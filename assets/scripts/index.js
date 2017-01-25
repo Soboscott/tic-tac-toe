@@ -1,31 +1,86 @@
 'use strict';
 
-const setAPIOrigin = require('../../lib/set-api-origin');
-const config = require('./config');
-
-$(() => {
-  setAPIOrigin(location, config);
-});
-
-// use require with a reference to bundle the file and use it in this file
-// const example = require('./example');
-
-// use require without a reference to ensure a file is bundled
-require('./example');
+// const setAPIOrigin = require('../../lib/set-api-origin');
+// const config = require('./config');
+//
+// $(() => {
+//   setAPIOrigin(location, config);
+// });
+//
+// // use require with a reference to bundle the file and use it in this file
+// // const example = require('./example');
+//
+// // use require without a reference to ensure a file is bundled
+// require('./example');
 
 const gameBoard = {
-  board: [0, 1, 2,
-          3, 4, 5,
-          6, 7, 8],
-  player: "x",
+  board: [
+    0, 1, 2,
+    3, 4, 5,
+    6, 7, 8,
+  ],
+  player: 'x',
 
-  setNextPlayer: function() {
-    if (this.player === "x") {
-      this.player = "o";
+  setNextPlayer: function () {
+    if (this.player === 'x') {
+      this.player = 'o';
     } else {
-      this.player = "x";
+      this.player = 'x';
     }
+
     return this.player;
+  },
+};
+
+const threeInARow = function (player, cellOne, cellTwo, cellThree) {
+
+  return (cellOne === player) && (cellTwo === player) && (cellThree === player);
+};
+
+const winRow = function (player) {
+  if (threeInARow(player, gameBoard.board[0], gameBoard.board[1], gameBoard.board[2]) ||
+  threeInARow(player, gameBoard.board[3], gameBoard.board[4], gameBoard.board[5]) ||
+  threeInARow(player, gameBoard.board[6], gameBoard.board[7], gameBoard.board[8])) {
+
+    return true;
+  }
+
+};
+
+const winColumn = function (player) {
+  if (threeInARow(player, gameBoard.board[0], gameBoard.board[3], gameBoard.board[6]) ||
+  threeInARow(player, gameBoard.board[1], gameBoard.board[4], gameBoard.board[7]) ||
+  threeInARow(player, gameBoard.board[2], gameBoard.board[5], gameBoard.board[8])) {
+
+    return true;
+  }
+
+};
+
+const winDiag = function (player) {
+  if (threeInARow(player, gameBoard.board[0], gameBoard.board[4], gameBoard.board[8]) ||
+  threeInARow(player, gameBoard.board[2], gameBoard.board[4], gameBoard.board[6])) {
+
+    return true;
+  }
+};
+
+const winnerIs = function (player) {
+  let winner = '';
+  if (winRow(player) || winColumn(player) || winDiag(player)) {
+    winner = player;
+  }
+};
+
+const announceWinner = function () {
+  for (let i = 0; i < this.player.length; i++) {
+    let winner = '';
+    if (winnerIs(this.player[i]) === true) {
+      winner = this.player[i];
+    }
+
+    // if (winner === this.player[i]) {
+    return 'The winner is player ' + this.player[i] + '!';
   }
 };
 
@@ -39,25 +94,6 @@ const gameBoard = {
 //   return newBoard;
 // };
 
-const winRow = function () {};
-const winColumn = function () {};
-const winDiag = function () {};
-const winnerIs = function (player) {
-  return winRow(player) || winColumn(player) || winDiag(player);
-};
-
-const announceWinner = function () {
-  let winner;
-  for (let i = 0; i < this.player.length; i++) {
-    if (winnerIs(this.player[i]) === true) {
-      winner = this.player[i];
-    }
-    // if (winner === this.player[i]) {
-      return "The winner is player " + this.player[i] + "!";
-    }
-  };
-};
-
-module.export = {
+module.exports = {
   gameBoard, announceWinner,
 };
