@@ -39,6 +39,21 @@ const player = {
   },
 };
 
+const assignBox = function () {
+  let result = '';
+  for (let i = 0; i < gameBoard.length; i++) {
+    if (player.symbol === 'x') {
+      result = 'x';
+    } else if (player.symbol === 'o') {
+      result = 'o';
+    }
+  }
+
+  return result;
+};
+
+$.box.on('click', assignBox);
+
 const threeInARow = function (player, cellOne, cellTwo, cellThree) {
   if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
 
