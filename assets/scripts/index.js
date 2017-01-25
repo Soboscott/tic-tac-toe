@@ -44,25 +44,6 @@ let game = {
   },
 };
 
-// const player = [
-//   'x',
-//   'o',
-// ];
-//
-// const yourMove = function () {
-//   for (let i = 0; i < player.length; i++) {
-//     for (let j = 0; j < this.gameBoard.length; j++) {
-//       if (player[i] && this.gameBoard[j] === '') {
-//         this.gameBoard[j] = player[i];
-//       } else if (player[i] && this.gameBoard[j] !== '') {
-//         this.gameBoard[j] = this.gameBoard[j];
-//       }
-//     }
-//   }
-//
-//   return this.gameBoard;
-// };
-
 const threeInARow = function (player, cellOne, cellTwo, cellThree) {
   if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
 
