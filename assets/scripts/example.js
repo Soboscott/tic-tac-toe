@@ -83,6 +83,15 @@ let game = {
 
     return winner;
   },
+
+  reset: function () {
+    this.gameBoard = [
+      '', '', '',
+      '', '', '',
+      '', '', '',
+    ];
+    return this.gameBoard;
+  },
 };
 
 module.exports = {
