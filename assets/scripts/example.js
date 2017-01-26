@@ -132,7 +132,16 @@ const yourMove = function (num) {
     }
   }
   printBoard();
+  winnerIs();
+  if (winnerIs() === true) {
+    reset();
+    printBoard();
+  }
 };
+
+// printBoard();
+// reset();
+// return gameBoard;
 
 module.exports = {
   gameBoard,
