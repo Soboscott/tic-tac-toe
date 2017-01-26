@@ -104,6 +104,12 @@ const fullBoard = function (element) {
   return element === '';
 };
 
+const printBoard = function() {
+  for (let i = 0; i < gameBoard.length; i+=3) {
+    console.log(gameBoard[i] + " " + gameBoard[i + 1] + " " + gameBoard[i + 2]);
+  }
+};
+
 const playGame = function () {
   for (let i = 0; i < gameBoard.length; i++) {
     yourMove(player.symbol);
@@ -111,14 +117,9 @@ const playGame = function () {
       winnerIs('x', 'o');
       }
     }
-    // reset();
-    // return gameBoard;
-  };
-
-  const printBoard = function() {
-    for (let i = 0; i < gameBoard.length; i+=3) {
-      console.log(gameBoard[i] + " " + gameBoard[i + 1] + " " + gameBoard[i + 2]);
-    }
+    printBoard();
+    reset();
+    return gameBoard;
   };
 
 module.exports = {
