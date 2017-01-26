@@ -113,11 +113,6 @@ const playGame = function () {
   return gameBoard;
 };
 
-  //   return winnerIs('x', 'o');
-  //   reset();
-  //   return gameBoard;
-  // };
-
 module.exports = {
   gameBoard,
   player,
