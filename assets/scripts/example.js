@@ -6,25 +6,27 @@ let gameBoard = [
     '', '', '',
   ];
 
-let player = 'x';
+let player = {
+  symbol: 'x',
 
-const setNextPlayer = function () {
-  if (player === 'x') {
-    player = 'o';
-  } else {
-    player = 'x';
-  }
-  return player;
+  setNextPlayer: function () {
+    if (this.symbol === 'x') {
+      this.symbol = 'o';
+    } else {
+      this.symbol = 'x';
+    }
+    return this.symbol;
+  },
 };
 
 const yourMove = function (playerSymbol) {
-  setNextPlayer();
+  console.log(player.symbol);
   for (let i = 0; i < gameBoard.length; i++) {
-    if (player === playerSymbol && gameBoard[i] !== '') {
+    if (player.symbol === playerSymbol && gameBoard[i] !== '') {
       gameBoard[i] = gameBoard[i];
-    } else if (player === playerSymbol && gameBoard[i] === '') {
+    } else if (player.symbol === playerSymbol && gameBoard[i] === '') {
       gameBoard[i] = playerSymbol;
-      setNextPlayer();
+      player.setNextPlayer();
     }
   }
 
@@ -110,7 +112,7 @@ const playGame = function () {
 module.exports = {
   gameBoard,
   player,
-  setNextPlayer,
+  // setNextPlayer,
   yourMove,
   threeInARow,
   winRow,
