@@ -1,15 +1,15 @@
 'use strict';
 
 let gameBoard = [
-    '', '', '',
-    '', '', '',
-    '', '', '',
+    '-', '-', '-',
+    '-', '-', '-',
+    '-', '-', '-',
   ];
 
 let newGameBoard = [
-    '', '', '',
-    '', '', '',
-    '', '', '',
+    '-', '-', '-',
+    '-', '-', '-',
+    '-', '-', '-',
   ];
 
 let player = {
@@ -23,6 +23,11 @@ let player = {
     }
     return this.symbol;
   },
+};
+
+const reset = function () {
+  gameBoard = newGameBoard;
+  return gameBoard;
 };
 
 // const yourMove = function (playerSymbol) {
@@ -52,9 +57,10 @@ const winRow = function (player) {
   threeInARow(player, gameBoard[6], gameBoard[7], gameBoard[8])) {
 
     console.log('Congratulations!' + player + " is the winner!");
+    reset();
   } else {
 
-    return false;
+    return null;
   }
 };
 
@@ -64,9 +70,10 @@ const winColumn = function (player) {
   threeInARow(player, gameBoard[2], gameBoard[5], gameBoard[8])) {
 
     console.log('Congratulations!' + player + " is the winner!");
+    reset();
   } else {
 
-    return false;
+    return null;
   }
 };
 
@@ -75,54 +82,49 @@ const winDiag = function (player) {
   threeInARow(player, gameBoard[2], gameBoard[4], gameBoard[6])) {
 
     console.log('Congratulations!' + player + " is the winner!");
+    reset();
   } else {
 
-    return false;
+    return null;
   }
 };
 
 const fullBoard = function () {
   for (let i = 0; i < gameBoard.length; i++) {
-    if (gameBoard[i] !== '') {
+    if (gameBoard[i] !== '-') {
       return true;
     }
   }
   return gameBoard;
 };
 
-const winnerIs = function (player, opponent) {
-  let winner = '';
-  if (winRow(player) || winColumn(player) || winDiag(player)) {
-    winner = player;
+const winnerIs = function () {
+  if (winRow(player.symbol) || winColumn(player.symbol) || winDiag(player.symbol)) {
+    reset();
 
-    return "Congratulations! " +  winner + " is the winner!";
-  } else if (winRow(opponent) || winColumn(opponent) || winDiag(opponent)) {
-    winner = opponent;
-
-    return "Congratulations! " + winner + " is the winner!";
   } else if (fullBoard) {
 
     return "Tie game!";
   }
 };
 
-const yourMove = function (playerSymbol) {
-  console.log(player.symbol);
-  for (let i = 0; i < gameBoard.length; i++) {
-    if (player.symbol === playerSymbol && gameBoard[i] !== '') {
-      gameBoard[i] = gameBoard[i];
-    } else if (player.symbol === playerSymbol && gameBoard[i] === '') {
-      gameBoard[i] = playerSymbol;
-      player.setNextPlayer();
-    }
-  }
-  return gameBoard;
-};
+// const winnerIs = function (player, opponent) {
+//   let winner = '';
+//   if (winRow(player) || winColumn(player) || winDiag(player)) {
+//     winner = player;
+//     reset();
+//
+//   } else if (winRow(opponent) || winColumn(opponent) || winDiag(opponent)) {
+//     winner = opponent;
+//     reset();
+//
+//   } else if (fullBoard) {
+//
+//     return "Tie game!";
+//
+//   }
+// };
 
-const reset = function () {
-  gameBoard = newGameBoard;
-  return gameBoard;
-};
 
 const printBoard = function() {
   for (let i = 0; i < gameBoard.length; i+=3) {
@@ -130,16 +132,38 @@ const printBoard = function() {
   }
 };
 
+const yourMove = function (playerSymbol) {
+  // console.log(player.symbol);
+  for (let i = 0; i < gameBoard.length; i++) {
+    if (player.symbol === playerSymbol && gameBoard[i] !== '-') {
+      gameBoard[i] = gameBoard[i];
+    } else if (player.symbol === playerSymbol && gameBoard[i] === '-') {
+      gameBoard[i] = playerSymbol;
+      winnerIs();
+      printBoard();
+      player.setNextPlayer();
+    }
+  }
+  // return gameBoard;
+};
+//
+// const printBoard = function() {
+//   for (let i = 0; i < gameBoard.length; i+=3) {
+//     console.log(gameBoard[i] + " " + gameBoard[i + 1] + " " + gameBoard[i + 2]);
+//   }
+// };
+
 const playGame = function () {
   for (let i = 0; i < gameBoard.length; i++) {
     yourMove(player.symbol);
-    if (gameBoard.every(fullBoard) === true) {
-      winnerIs('x', 'o');
-      }
+    // winnerIs();
+    // if (gameBoard.every(fullBoard) === true) {
+    //   winnerIs('x', 'o');
+    //   }
     }
-    printBoard();
+    // printBoard();
     reset();
-    // return gameBoard;
+    return gameBoard;
   };
 
 module.exports = {
