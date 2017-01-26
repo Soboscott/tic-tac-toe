@@ -104,14 +104,11 @@ const playGame = function () {
     yourMove(player.symbol);
     if (gameBoard.every(fullBoard) === false) {
       winnerIs('x', 'o');
+      }
     }
-
-    // return winnerIs('x', 'o');
-  }
-  reset();
-
-  return gameBoard;
-};
+    reset();
+    return gameBoard;
+  };
 
 module.exports = {
   gameBoard,
