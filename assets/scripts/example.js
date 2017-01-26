@@ -79,11 +79,16 @@ const winnerIs = function (player, opponent) {
   let winner = '';
   if (winRow(player) === true || winColumn(player) === true || winDiag(player) === true) {
     winner = player;
+
+    return "Congratulations! " + winner + " is the winner!";
   } else if (winRow(opponent) === true || winColumn(opponent) === true || winDiag(opponent) === true) {
     winner = opponent;
-  }
 
-  return "Congratulations! " + winner + " is the winner!";
+    return "Congratulations! " + winner + " is the winner!";
+  } else {
+
+    return "Tie game!";
+  }
 };
 
 const reset = function () {
