@@ -12,27 +12,22 @@ let newGameBoard = [
     '-', '-', '-',
   ];
 
-let player = {
-  symbol: 'x',
-
-  setNextPlayer: function () {
-    if (this.symbol === 'x') {
-      this.symbol = 'o';
-    } else {
-      this.symbol = 'x';
-    }
-    return this.symbol;
-  },
-};
+let player = [
+  'x',
+  'o',
+];
 
 let spotTaken = false;
 
 let gameOver = false;
 
+let fullBoard = false;
+
 let turn = 0;
 
 const reset = function () {
   gameBoard = newGameBoard;
+  fullBoard = false;
   return gameBoard;
 };
 
@@ -48,7 +43,7 @@ const winRow = function (player) {
   threeInARow(player, gameBoard[3], gameBoard[4], gameBoard[5]) ||
   threeInARow(player, gameBoard[6], gameBoard[7], gameBoard[8])) {
 
-    console.log('Congratulations!' + player + " is the winner!");
+    console.log('Congratulations! ' + player + " is the winner!");
     reset();
   } else {
 
@@ -81,28 +76,59 @@ const winDiag = function (player) {
   }
 };
 
-const fullBoard = function () {
+// const isBoardFull = function () {
+//   for (let i = 0; i < gameBoard.length; i++) {
+//     if (gameBoard.every(spotTaken === true)) {
+//       fullBoard = true;
+//     }
+//   }
+// };
+
+
+const isSpotTaken = function () {
   for (let i = 0; i < gameBoard.length; i++) {
     if (gameBoard[i] !== '-') {
-      return true;
+      spotTaken = true;
+    } else {
+      spotTaken = false;
     }
   }
-  return gameBoard;
 };
 
-const winnerIs = function () {
-  if (winRow(player.symbol) || winColumn(player.symbol) || winDiag(player.symbol)) {
-    gameOver = true;
-    return true;
+const isBoardFull = function () {
+  if (gameBoard.every(isSpotTaken)) {
+    fullBoard = true;
+  }
+};
 
-  } else if (fullBoard()) {
-    gameOver = true;
-
-    return "Tie game!";
+const winnerIs = function (player) {
+  return winRow(player) || winColumn(player) || winDiag(player);
+};
+//
+const tieGame = function () {
+  if (fullBoard === true && winRow(player) === false && winColumn(player) === false && winDiag(player) === false) {
+    console.log("Well played! Tie game!");
+    reset();
   } else {
-    gameOver = false;
-
     return false;
+  }
+};
+
+const getWinner = function () {
+  isBoardFull();
+  if (tieGame()) {
+    gameOver = true;
+    return 'tie game';
+  } else if (winnerIs(player[0])) {
+    gameOver = true;
+    return 'x';
+  } else if (winnerIs(player[1])) {
+    gameOver = true;
+    return 'o';
+  }
+
+  else {
+    gameOver = false;
   }
 };
 
@@ -113,7 +139,7 @@ const printBoard = function() {
 };
 
 const yourMove = function (num) {
-  // console.log(player.symbol);
+  console.log(player.symbol);
   for (let i = 0; i < gameBoard.length; i++) {
     if (gameBoard[num] !== '-') {
       spotTaken = true;
@@ -121,19 +147,20 @@ const yourMove = function (num) {
       spotTaken = false;
     }
   }
-  if (spotTaken === true) {
+
+  if (spotTaken === true && fullBoard === false) {
     console.log('Please pick somewhere else!');
   } else {
     turn++;
     if (turn%2 === 0) {
-      gameBoard[num] = 'x';
+      gameBoard[num] = player[0];
     } else {
-      gameBoard[num] = 'o';
+      gameBoard[num] = player[1];
     }
   }
   printBoard();
-  winnerIs();
-  if (winnerIs() === true) {
+  getWinner();
+  if (getWinner() === true) {
     reset();
     printBoard();
   }
