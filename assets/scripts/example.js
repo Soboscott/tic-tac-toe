@@ -101,18 +101,18 @@ const fullBoard = function (element) {
 
 const playGame = function () {
   for (let i = 0; i < gameBoard.length; i++) {
-    yourMove();
+    yourMove(player.symbol);
     if (gameBoard.every(fullBoard) === false) {
       winnerIs('x', 'o');
-      reset();
       }
     }
+    reset();
+    return gameBoard;
   };
 
 module.exports = {
   gameBoard,
   player,
-  // setNextPlayer,
   yourMove,
   threeInARow,
   winRow,
