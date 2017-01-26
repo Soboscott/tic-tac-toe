@@ -170,6 +170,7 @@ const yourMove = function (num) {
 // reset();
 // return gameBoard;
 
+
 module.exports = {
   gameBoard,
   player,
