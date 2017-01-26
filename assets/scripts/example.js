@@ -83,7 +83,7 @@ const winnerIs = function (player, opponent) {
     winner = opponent;
   }
 
-  return winner;
+  return "Congratulations! " + winner + " is the winner!";
 };
 
 const reset = function () {
@@ -104,11 +104,19 @@ const playGame = function () {
     yourMove(player.symbol);
     if (gameBoard.every(fullBoard) === false) {
       winnerIs('x', 'o');
-      }
     }
-    reset();
-    return gameBoard;
-  };
+
+    // return winnerIs('x', 'o');
+  }
+  reset();
+
+  return gameBoard;
+};
+
+  //   return winnerIs('x', 'o');
+  //   reset();
+  //   return gameBoard;
+  // };
 
 module.exports = {
   gameBoard,
