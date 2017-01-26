@@ -51,7 +51,7 @@ const winRow = function (player) {
   threeInARow(player, gameBoard[3], gameBoard[4], gameBoard[5]) ||
   threeInARow(player, gameBoard[6], gameBoard[7], gameBoard[8])) {
 
-    return true;
+    console.log('Congratulations!' + player + " is the winner!");
   } else {
 
     return false;
@@ -74,7 +74,7 @@ const winDiag = function (player) {
   if (threeInARow(player, gameBoard[0], gameBoard[4], gameBoard[8]) ||
   threeInARow(player, gameBoard[2], gameBoard[4], gameBoard[6])) {
 
-    return true;
+    console.log('Congratulations!' + player + " is the winner!");
   } else {
 
     return false;
