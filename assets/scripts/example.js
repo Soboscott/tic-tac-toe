@@ -25,26 +25,16 @@ let player = {
   },
 };
 
-// let inPlay = true;
+let spotTaken = false;
+
+let gameOver = false;
+
+let turn = 0;
 
 const reset = function () {
   gameBoard = newGameBoard;
   return gameBoard;
 };
-
-// const yourMove = function (playerSymbol) {
-//   console.log(player.symbol);
-//   for (let i = 0; i < gameBoard.length; i++) {
-//     if (player.symbol === playerSymbol && gameBoard[i] !== '') {
-//       gameBoard[i] = gameBoard[i];
-//     } else if (player.symbol === playerSymbol && gameBoard[i] === '') {
-//       gameBoard[i] = playerSymbol;
-//       player.setNextPlayer();
-//     }
-//   }
-//
-//   return gameBoard;
-// };
 
 const threeInARow = function (player, cellOne, cellTwo, cellThree) {
   if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
@@ -62,7 +52,7 @@ const winRow = function (player) {
     reset();
   } else {
 
-    return null;
+    return false;
   }
 };
 
@@ -75,7 +65,7 @@ const winColumn = function (player) {
     reset();
   } else {
 
-    return null;
+    return false;
   }
 };
 
@@ -87,7 +77,7 @@ const winDiag = function (player) {
     reset();
   } else {
 
-    return null;
+    return false;
   }
 };
 
@@ -102,36 +92,19 @@ const fullBoard = function () {
 
 const winnerIs = function () {
   if (winRow(player.symbol) || winColumn(player.symbol) || winDiag(player.symbol)) {
-    // reset();
-    // inPlay = false;
+    gameOver = true;
     return true;
 
   } else if (fullBoard()) {
-    // inPlay = false;
+    gameOver = true;
 
     return "Tie game!";
   } else {
+    gameOver = false;
+
     return false;
   }
 };
-
-// const winnerIs = function (player, opponent) {
-//   let winner = '';
-//   if (winRow(player) || winColumn(player) || winDiag(player)) {
-//     winner = player;
-//     reset();
-//
-//   } else if (winRow(opponent) || winColumn(opponent) || winDiag(opponent)) {
-//     winner = opponent;
-//     reset();
-//
-//   } else if (fullBoard) {
-//
-//     return "Tie game!";
-//
-//   }
-// };
-
 
 const printBoard = function() {
   for (let i = 0; i < gameBoard.length; i+=3) {
@@ -139,36 +112,26 @@ const printBoard = function() {
   }
 };
 
-const yourMove = function (playerSymbol) {
+const yourMove = function (num) {
   // console.log(player.symbol);
   for (let i = 0; i < gameBoard.length; i++) {
-    if (player.symbol === playerSymbol && gameBoard[i] !== '-') {
-      gameBoard[i] = gameBoard[i];
-    } else if (player.symbol === playerSymbol && gameBoard[i] === '-') {
-      gameBoard[i] = playerSymbol;
-      printBoard();
-      winnerIs();
-      player.setNextPlayer();
+    if (gameBoard[num] !== '-') {
+      spotTaken = true;
+    } else {
+      spotTaken = false;
     }
   }
-  // return gameBoard;
-};
-
-const playGame = function () {
-  // if (inPlay === true) {
-    for (let i = 0; i < gameBoard.length; i++) {
-      yourMove(player.symbol);
-      // if (inPlay === false) {
-      //   return;
-      // }
+  if (spotTaken === true) {
+    console.log('Please pick somewhere else!');
+  } else {
+    turn++;
+    if (turn%2 === 0) {
+      gameBoard[num] = 'x';
+    } else {
+      gameBoard[num] = 'o';
     }
-  // } else {
-  //   reset();
-  // }
-    // return gameBoard;
-    // printBoard();
-    // reset();
-    // return gameBoard;
+  }
+  printBoard();
 };
 
 module.exports = {
@@ -182,6 +145,5 @@ module.exports = {
   winnerIs,
   reset,
   fullBoard,
-  playGame,
   printBoard,
 };
