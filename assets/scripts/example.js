@@ -6,6 +6,12 @@ let gameBoard = [
     '', '', '',
   ];
 
+let newGameBoard = [
+    '', '', '',
+    '', '', '',
+    '', '', '',
+  ];
+
 let player = {
   symbol: 'x',
 
@@ -19,19 +25,19 @@ let player = {
   },
 };
 
-const yourMove = function (playerSymbol) {
-  console.log(player.symbol);
-  for (let i = 0; i < gameBoard.length; i++) {
-    if (player.symbol === playerSymbol && gameBoard[i] !== '') {
-      gameBoard[i] = gameBoard[i];
-    } else if (player.symbol === playerSymbol && gameBoard[i] === '') {
-      gameBoard[i] = playerSymbol;
-      player.setNextPlayer();
-    }
-  }
-
-  return gameBoard;
-};
+// const yourMove = function (playerSymbol) {
+//   console.log(player.symbol);
+//   for (let i = 0; i < gameBoard.length; i++) {
+//     if (player.symbol === playerSymbol && gameBoard[i] !== '') {
+//       gameBoard[i] = gameBoard[i];
+//     } else if (player.symbol === playerSymbol && gameBoard[i] === '') {
+//       gameBoard[i] = playerSymbol;
+//       player.setNextPlayer();
+//     }
+//   }
+//
+//   return gameBoard;
+// };
 
 const threeInARow = function (player, cellOne, cellTwo, cellThree) {
   if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
@@ -57,7 +63,7 @@ const winColumn = function (player) {
   threeInARow(player, gameBoard[1], gameBoard[4], gameBoard[7]) ||
   threeInARow(player, gameBoard[2], gameBoard[5], gameBoard[8])) {
 
-    return true;
+    console.log('Congratulations!' + player + " is the winner!");
   } else {
 
     return false;
@@ -75,33 +81,47 @@ const winDiag = function (player) {
   }
 };
 
+const fullBoard = function () {
+  for (let i = 0; i < gameBoard.length; i++) {
+    if (gameBoard[i] !== '') {
+      return true;
+    }
+  }
+  return gameBoard;
+};
+
 const winnerIs = function (player, opponent) {
   let winner = '';
-  if (winRow(player) === true || winColumn(player) === true || winDiag(player) === true) {
+  if (winRow(player) || winColumn(player) || winDiag(player)) {
     winner = player;
 
-    return "Congratulations! " + winner + " is the winner!";
-  } else if (winRow(opponent) === true || winColumn(opponent) === true || winDiag(opponent) === true) {
+    return "Congratulations! " +  winner + " is the winner!";
+  } else if (winRow(opponent) || winColumn(opponent) || winDiag(opponent)) {
     winner = opponent;
 
     return "Congratulations! " + winner + " is the winner!";
-  } else {
+  } else if (fullBoard) {
 
     return "Tie game!";
   }
 };
 
-const reset = function () {
-  gameBoard = [
-    '', '', '',
-    '', '', '',
-    '', '', '',
-  ];
+const yourMove = function (playerSymbol) {
+  console.log(player.symbol);
+  for (let i = 0; i < gameBoard.length; i++) {
+    if (player.symbol === playerSymbol && gameBoard[i] !== '') {
+      gameBoard[i] = gameBoard[i];
+    } else if (player.symbol === playerSymbol && gameBoard[i] === '') {
+      gameBoard[i] = playerSymbol;
+      player.setNextPlayer();
+    }
+  }
   return gameBoard;
 };
 
-const fullBoard = function (element) {
-  return element === '';
+const reset = function () {
+  gameBoard = newGameBoard;
+  return gameBoard;
 };
 
 const printBoard = function() {
@@ -113,13 +133,13 @@ const printBoard = function() {
 const playGame = function () {
   for (let i = 0; i < gameBoard.length; i++) {
     yourMove(player.symbol);
-    if (gameBoard.every(fullBoard) === false) {
+    if (gameBoard.every(fullBoard) === true) {
       winnerIs('x', 'o');
       }
     }
     printBoard();
     reset();
-    return gameBoard;
+    // return gameBoard;
   };
 
 module.exports = {
