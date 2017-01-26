@@ -25,6 +25,8 @@ let player = {
   },
 };
 
+// let inPlay = true;
+
 const reset = function () {
   gameBoard = newGameBoard;
   return gameBoard;
@@ -100,11 +102,16 @@ const fullBoard = function () {
 
 const winnerIs = function () {
   if (winRow(player.symbol) || winColumn(player.symbol) || winDiag(player.symbol)) {
-    reset();
+    // reset();
+    // inPlay = false;
+    return true;
 
-  } else if (fullBoard) {
+  } else if (fullBoard()) {
+    // inPlay = false;
 
     return "Tie game!";
+  } else {
+    return false;
   }
 };
 
@@ -139,32 +146,30 @@ const yourMove = function (playerSymbol) {
       gameBoard[i] = gameBoard[i];
     } else if (player.symbol === playerSymbol && gameBoard[i] === '-') {
       gameBoard[i] = playerSymbol;
-      winnerIs();
       printBoard();
+      winnerIs();
       player.setNextPlayer();
     }
   }
   // return gameBoard;
 };
-//
-// const printBoard = function() {
-//   for (let i = 0; i < gameBoard.length; i+=3) {
-//     console.log(gameBoard[i] + " " + gameBoard[i + 1] + " " + gameBoard[i + 2]);
-//   }
-// };
 
 const playGame = function () {
-  for (let i = 0; i < gameBoard.length; i++) {
-    yourMove(player.symbol);
-    // winnerIs();
-    // if (gameBoard.every(fullBoard) === true) {
-    //   winnerIs('x', 'o');
-    //   }
+  // if (inPlay === true) {
+    for (let i = 0; i < gameBoard.length; i++) {
+      yourMove(player.symbol);
+      // if (inPlay === false) {
+      //   return;
+      // }
     }
+  // } else {
+  //   reset();
+  // }
+    // return gameBoard;
     // printBoard();
-    reset();
-    return gameBoard;
-  };
+    // reset();
+    // return gameBoard;
+};
 
 module.exports = {
   gameBoard,
