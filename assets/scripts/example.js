@@ -101,6 +101,7 @@ const winnerIs = function (player) {
 };
 //
 const tieGame = function () {
+  //tests if the board is full AND if there's no winner
   if (fullBoard === true && winRow(player) === false && winColumn(player) === false && winDiag(player) === false) {
     console.log("Well played! Tie game!");
     reset();
@@ -110,8 +111,11 @@ const tieGame = function () {
 };
 
 const getWinner = function () {
+  //checks if the board is full
   isBoardFull();
+  //sets rules for the tie game, winner
   if (tieGame()) {
+    //says the game is over
     gameOver = true;
     return 'tie game';
   } else if (winnerIs(player[0])) {
