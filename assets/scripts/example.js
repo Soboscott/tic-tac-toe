@@ -138,10 +138,12 @@ const printBoard = function() {
   }
 };
 
-const yourMove = function (num) {
+const yourMove = function (event) {
   console.log(player.symbol);
+  console.log('hi!');
+  let index = event.target.id;
   for (let i = 0; i < gameBoard.length; i++) {
-    if (gameBoard[num] !== '-') {
+    if (gameBoard[index] !== '-') {
       spotTaken = true;
     } else {
       spotTaken = false;
@@ -149,13 +151,13 @@ const yourMove = function (num) {
   }
 
   if (spotTaken === true && fullBoard === false) {
-    console.log('Please pick somewhere else!');
+    // console.log('Please pick somewhere else!');
   } else {
     turn++;
     if (turn%2 === 0) {
-      gameBoard[num] = player[0];
+      gameBoard[index] = player[0];
     } else {
-      gameBoard[num] = player[1];
+      gameBoard[index] = player[1];
     }
   }
   printBoard();
