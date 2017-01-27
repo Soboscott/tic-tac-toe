@@ -20,18 +20,17 @@ const game = require('./example');
 // };
 
 const addHandlers = () => {
-  $('#start').on('click', game.reset);
-  // $(".box").on('click', assignBox);
+  $('#reset').on('click', game.reset);
   // $(".box").on('click', displaySymbol);
-  $('#boxZero').on('click', game.yourMove);
-  $('#boxOne').on('click', game.yourMove);
-  $('#boxTwo').on('click', game.yourMove);
-  $('#boxThree').on('click', game.yourMove);
-  $('#boxFour').on('click', game.yourMove);
-  $('#boxFive').on('click', game.yourMove);
-  $('#boxSix').on('click', game.yourMove);
-  $('#boxSeven').on('click', game.yourMove);
-  $('#boxEight').on('click', game.yourMove);
+  $('#0').on('click', game.yourMove);
+  $('#1').on('click', game.yourMove);
+  $('#2').on('click', game.yourMove);
+  $('#3').on('click', game.yourMove);
+  $('#4').on('click', game.yourMove);
+  $('#5').on('click', game.yourMove);
+  $('#6').on('click', game.yourMove);
+  $('#7').on('click', game.yourMove);
+  $('#8').on('click', game.yourMove);
 };
 
 
