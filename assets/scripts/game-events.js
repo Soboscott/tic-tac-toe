@@ -33,7 +33,27 @@ const addHandlers = () => {
   $('#8').on('click', game.yourMove);
 };
 
+const takeOutHandlers = () => {
+  $('#0').off('click', game.yourMove);
+  $('#1').off('click', game.yourMove);
+  $('#2').off('click', game.yourMove);
+  $('#3').off('click', game.yourMove);
+  $('#4').off('click', game.yourMove);
+  $('#5').off('click', game.yourMove);
+  $('#6').off('click', game.yourMove);
+  $('#7').off('click', game.yourMove);
+  $('#8').off('click', game.yourMove);
+};
+
+const act = function () {
+  if (game.gameOver === true) {
+    takeOutHandlers();
+  }
+};
+
 
 module.exports = {
   addHandlers,
+  takeOutHandlers,
+  act,
 };
