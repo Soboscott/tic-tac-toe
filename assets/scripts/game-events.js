@@ -14,7 +14,6 @@ const addHandlers = () => {
   $('#8').on('click', game.yourMove);
 };
 
-
 module.exports = {
   addHandlers,
 };
