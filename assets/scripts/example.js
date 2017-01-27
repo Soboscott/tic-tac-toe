@@ -125,13 +125,13 @@ const getWinner = function () {
   if (tieGame()) {
     //reassigns gameOver as true
     gameOver = true;
-    return 'tie game';
+    return;
   } else if (winnerIs(player[0])) {
     gameOver = true;
-    return 'x';
+    return;
   } else if (winnerIs(player[1])) {
     gameOver = true;
-    return 'o';
+    return;
   }
 
   else {
@@ -195,34 +195,8 @@ const yourMove = function (event) {
     return gameBoard;
   }
 };
-//
-// const isGameOver = function () {
-//   if (gameOver === true){
-//     // $('.box').off('click', yourMove);
-//   }
-// };
-// //
-// const playGame = function () {
-//   yourMove();
-//   isGameOver();
-// };
-//
-// printBoard();
-// reset();
-// return gameBoard;
-//
 
 module.exports = {
-  gameBoard,
-  player,
   yourMove,
-  threeInARow,
-  winRow,
-  winColumn,
-  winDiag,
-  winnerIs,
   reset,
-  fullBoard,
-  printBoard,
-  // playGame,
 };
