@@ -6,11 +6,11 @@ let gameBoard = [
     '-', '-', '-',
   ];
 
-const newGameBoard = [
-    '-', '-', '-',
-    '-', '-', '-',
-    '-', '-', '-',
-  ];
+// const newGameBoard = [
+//     '-', '-', '-',
+//     '-', '-', '-',
+//     '-', '-', '-',
+//   ];
 
 let player = [
   'x',
@@ -28,16 +28,16 @@ let turn = 0;
 const reset = function () {
   // event.target.id = 'reset';
   //reassigns gameBoard to a blank board
-  gameBoard = newGameBoard;
+  // event.target.id;
+  gameBoard = [
+      '-', '-', '-',
+      '-', '-', '-',
+      '-', '-', '-',
+    ];
   //reassigns fullBoard to default
   fullBoard = false;
-  // for (let i = 0; i < gameBoard.length; i++) {
-  //   for (let j = 0; j < player.length; j++) {
-  //     if (gameBoard[i] === player[j]) {
-  //       document.getElementsByClassName("box").innerText = '';
-  //     }
-  //   }
-  // }
+  $(".banner").text("");
+  $(".box").text("");
   return gameBoard;
 };
 
@@ -55,8 +55,8 @@ const winRow = function (player) {
   threeInARow(player, gameBoard[3], gameBoard[4], gameBoard[5]) ||
   threeInARow(player, gameBoard[6], gameBoard[7], gameBoard[8])) {
 
-    console.log('Congratulations! ' + player + " is the winner!");
-    reset();
+    $(".banner").text("Congratulations! Player '" + player + "' is the winner!");
+    // reset();
   } else {
 
     return false;
@@ -69,8 +69,8 @@ const winColumn = function (player) {
   threeInARow(player, gameBoard[1], gameBoard[4], gameBoard[7]) ||
   threeInARow(player, gameBoard[2], gameBoard[5], gameBoard[8])) {
 
-    console.log('Congratulations!' + player + " is the winner!");
-    reset();
+    $(".banner").text("Congratulations! Player '" + player + "' is the winner!");
+    // reset();
   } else {
 
     return false;
@@ -82,8 +82,8 @@ const winDiag = function (player) {
   if (threeInARow(player, gameBoard[0], gameBoard[4], gameBoard[8]) ||
   threeInARow(player, gameBoard[2], gameBoard[4], gameBoard[6])) {
 
-    console.log('Congratulations!' + player + " is the winner!");
-    reset();
+    $(".banner").text("Congratulations! Player '" + player + "' is the winner!");
+        // reset();
   } else {
 
     return false;
@@ -93,8 +93,8 @@ const winDiag = function (player) {
 const tieGame = function () {
   //tests if the board is full AND if there's no winner
   if (fullBoard === true && winRow(player) === false && winColumn(player) === false && winDiag(player) === false) {
-    console.log("Well played! Tie game!");
-    reset();
+    $(".banner").text("Well played! Tie Game!");
+    // reset();
   } else {
     return false;
   }
@@ -125,13 +125,13 @@ const getWinner = function () {
   if (tieGame()) {
     //reassigns gameOver as true
     gameOver = true;
-    return true;
+    return 'tie game';
   } else if (winnerIs(player[0])) {
     gameOver = true;
-    return true;
+    return 'x';
   } else if (winnerIs(player[1])) {
     gameOver = true;
-    return true;
+    return 'o';
   }
 
   else {
@@ -164,9 +164,11 @@ const yourMove = function (event) {
   //sets condition for what happens when the spotTaken is true
   //cannot move forward, must pick a different spot
   if (spotTaken === true && fullBoard === false) {
+    $(".banner").text("Please pick somewhere else!");
     console.log('Please pick somewhere else!');
     //if spotTaken is false, the next person can move
   } else if (spotTaken === false) {
+    $(".banner").text("");
     turn++;
     //every other turn is x or o
     if (turn%2 === 0) {
@@ -189,7 +191,7 @@ const yourMove = function (event) {
   getWinner();
   if (getWinner() === true) {
     printBoard();
-    reset();
+    // reset();
     return gameBoard;
   }
 };
