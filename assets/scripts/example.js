@@ -26,6 +26,7 @@ let fullBoard = false;
 let turn = 0;
 
 const reset = function () {
+  // event.target.id = 'reset';
   gameBoard = newGameBoard;
   fullBoard = false;
   return gameBoard;
@@ -85,14 +86,8 @@ const winDiag = function (player) {
 // };
 
 
-const isSpotTaken = function () {
-  for (let i = 0; i < gameBoard.length; i++) {
-    if (gameBoard[i] !== '-') {
-      spotTaken = true;
-    } else {
-      spotTaken = false;
-    }
-  }
+const isSpotTaken = function (element) {
+  return element !== '-';
 };
 
 const isBoardFull = function () {
@@ -140,7 +135,6 @@ const printBoard = function() {
 
 const yourMove = function (event) {
   console.log(player.symbol);
-  console.log('hi!');
   let index = event.target.id;
   for (let i = 0; i < gameBoard.length; i++) {
     if (gameBoard[index] !== '-') {
@@ -151,8 +145,8 @@ const yourMove = function (event) {
   }
 
   if (spotTaken === true && fullBoard === false) {
-    // console.log('Please pick somewhere else!');
-  } else {
+    console.log('Please pick somewhere else!');
+  } else if (spotTaken === false) {
     turn++;
     if (turn%2 === 0) {
       gameBoard[index] = player[0];
@@ -160,10 +154,13 @@ const yourMove = function (event) {
       gameBoard[index] = player[1];
     }
   }
+  // else if (fullBoard === true) {
+  //   console.log('tie game');
+  // }
   printBoard();
   getWinner();
   if (getWinner() === true) {
-    reset();
+    // reset();
     printBoard();
   }
 };
