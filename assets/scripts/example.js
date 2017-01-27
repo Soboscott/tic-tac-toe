@@ -6,12 +6,6 @@ let gameBoard = [
     '-', '-', '-',
   ];
 
-// const newGameBoard = [
-//     '-', '-', '-',
-//     '-', '-', '-',
-//     '-', '-', '-',
-//   ];
-
 let player = [
   'x',
   'o',
@@ -38,6 +32,7 @@ const reset = function () {
   fullBoard = false;
   $(".banner").text("");
   $(".box").text("");
+  gameOver = false;
   return gameBoard;
 };
 
@@ -56,7 +51,8 @@ const winRow = function (player) {
   threeInARow(player, gameBoard[6], gameBoard[7], gameBoard[8])) {
 
     $(".banner").text("Congratulations! Player '" + player + "' is the winner!");
-    // reset();
+    gameOver = true;
+    return;
   } else {
 
     return false;
@@ -70,7 +66,8 @@ const winColumn = function (player) {
   threeInARow(player, gameBoard[2], gameBoard[5], gameBoard[8])) {
 
     $(".banner").text("Congratulations! Player '" + player + "' is the winner!");
-    // reset();
+    gameOver = true;
+    return;
   } else {
 
     return false;
@@ -83,7 +80,8 @@ const winDiag = function (player) {
   threeInARow(player, gameBoard[2], gameBoard[4], gameBoard[6])) {
 
     $(".banner").text("Congratulations! Player '" + player + "' is the winner!");
-        // reset();
+            gameOver = true;
+        return;
   } else {
 
     return false;
@@ -94,7 +92,8 @@ const tieGame = function () {
   //tests if the board is full AND if there's no winner
   if (fullBoard === true && winRow(player) === false && winColumn(player) === false && winDiag(player) === false) {
     $(".banner").text("Well played! Tie Game!");
-    // reset();
+    gameOver = true;
+    return;
   } else {
     return false;
   }
@@ -124,17 +123,17 @@ const getWinner = function () {
   //sets rules for the tie game, winner
   if (tieGame()) {
     //reassigns gameOver as true
-    gameOver = true;
+    // gameOver = true;
     return;
   } else if (winnerIs(player[0])) {
-    gameOver = true;
+    // gameOver = true;
     return;
   } else if (winnerIs(player[1])) {
-    gameOver = true;
+    // gameOver = true;
     return;
   }
 
-  else {
+  else if (winnerIs(player[0] === false && winnerIs(player[1] === false && tieGame() === false))){
     //if nobody has won or tied, keeps gameOver as false
     gameOver = false;
   }
@@ -148,9 +147,8 @@ const printBoard = function() {
 };
 
 const yourMove = function (event) {
-  // console.log(player.symbol);
   let index = event.target.id;
-  //for the length of the gameBoard, if gB[i] is not an empty string,
+  //for the length of the gameBoard, if gameBoard[index] is not an empty string,
   //spotTaken is reassigned as true
   //defines spotTaken
   for (let i = 0; i < gameBoard.length; i++) {
@@ -167,6 +165,8 @@ const yourMove = function (event) {
     $(".banner").text("Please pick somewhere else!");
     console.log('Please pick somewhere else!');
     //if spotTaken is false, the next person can move
+  } else if (gameOver === true) {
+    return;
   } else if (spotTaken === false) {
     $(".banner").text("");
     turn++;
@@ -179,7 +179,7 @@ const yourMove = function (event) {
     //if the gameBoard[index] is the same as a player
     //change the text in index.html to incude the player name
     for (let i = 0; i < player.length; i++) {
-      if (gameBoard[index] === player[i]) {
+      if (gameBoard[index] === player[i] && gameOver !== true) {
         this.innerText = player[i];
       }
     }
@@ -189,11 +189,11 @@ const yourMove = function (event) {
   // }
   printBoard();
   getWinner();
-  if (getWinner() === true) {
-    printBoard();
-    // reset();
-    return gameBoard;
-  }
+  // if (getWinner() === true) {
+  //   printBoard();
+  //   // reset();
+    // return gameBoard;
+  // }
 };
 
 module.exports = {
