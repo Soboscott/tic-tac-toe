@@ -153,6 +153,11 @@ const yourMove = function (event) {
     } else {
       gameBoard[index] = player[1];
     }
+    for (let i = 0; i < player.length; i++) {
+      if (gameBoard[index] === player[i]) {
+        this.innerText = player[i];
+      }
+    }
   }
   // else if (fullBoard === true) {
   //   console.log('tie game');
