@@ -173,7 +173,6 @@ const yourMove = function (event) {
   //cannot move forward, must pick a different spot
   if (spotTaken === true && fullBoard === false) {
     $('.banner').text('Please pick somewhere else!');
-    console.log('Please pick somewhere else!');
 
     //if spotTaken is false, the next person can move
   } else if (gameOver === true) {
@@ -184,9 +183,9 @@ const yourMove = function (event) {
 
     //every other turn is x or o
     if (turn % 2 === 0) {
-      gameBoard[index] = player[0];
-    } else {
       gameBoard[index] = player[1];
+    } else {
+      gameBoard[index] = player[0];
     }
 
     //if the gameBoard[index] is the same as a player
@@ -200,9 +199,43 @@ const yourMove = function (event) {
 
   printBoard();
   getWinner();
+  console.log(gameBoard);
+  return gameBoard;
 };
+
+const Game = function Games(over) {
+  this.over = over;
+  this.cells = [];
+};
+
+const Cell = function Cells(index, value) {
+  this.index = index;
+  this.value = value;
+};
+
+let update = new Game(gameOver);
+update.cells.push(new Cell(gameBoard.index, gameBoard.value));
+
+// const updateMove = function () {
+//   let update = {
+//     "game": {
+//       "cell": {
+//         "index": 0,
+//         "value": "x"
+//       },
+//       "over": false
+//     }
+//   };
+//   update.game.cell.index = yourMove.gameBoard.index;
+//   update.game.cell.value = yourMove.player.index;
+//   update.game.over = gameOver;
+//   return update;
+// };
 
 module.exports = {
   yourMove,
   reset,
+  gameBoard,
+  player,
+  update,
 };
