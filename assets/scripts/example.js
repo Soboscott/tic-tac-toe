@@ -6,10 +6,12 @@ let gameBoard = [
     '-', '-', '-',
   ];
 
-let player = [
-  'x',
-  'o',
-];
+// let player = [
+//   'x',
+//   'o',
+// ];
+
+let player = "X";
 
 let spotTaken = false;
 
@@ -149,11 +151,11 @@ const getWinner = function () {
 };
 
 //prints out the board in the console for visual reference
-const printBoard = function () {
-  for (let i = 0; i < gameBoard.length; i += 3) {
-    console.log(gameBoard[i] + ' ' + gameBoard[i + 1] + ' ' + gameBoard[i + 2]);
-  }
-};
+// const printBoard = function () {
+//   for (let i = 0; i < gameBoard.length; i += 3) {
+//     console.log(gameBoard[i] + ' ' + gameBoard[i + 1] + ' ' + gameBoard[i + 2]);
+//   }
+// };
 
 const yourMove = function (event) {
   let index = event.target.id;
@@ -183,9 +185,11 @@ const yourMove = function (event) {
 
     //every other turn is x or o
     if (turn % 2 === 0) {
-      gameBoard[index] = player[1];
+      player = "O";
+      gameBoard[index] = player;
     } else {
-      gameBoard[index] = player[0];
+      player = "X";
+      gameBoard[index] = player;
     }
 
     //if the gameBoard[index] is the same as a player
@@ -197,24 +201,24 @@ const yourMove = function (event) {
     }
   }
 
-  printBoard();
+  // printBoard();
   getWinner();
   console.log(gameBoard);
   return gameBoard;
 };
 
-const Game = function Games(over) {
-  this.over = over;
-  this.cells = [];
-};
-
-const Cell = function Cells(index, value) {
-  this.index = index;
-  this.value = value;
-};
-
-let update = new Game(gameOver);
-update.cells.push(new Cell(gameBoard.index, gameBoard.value));
+// const Game = function Games(over) {
+//   this.over = over;
+//   this.cells = [];
+// };
+//
+// const Cell = function Cells(index, value) {
+//   this.index = index;
+//   this.value = value;
+// };
+//
+// let update = new Game(gameOver);
+// update.cells.push(new Cell(gameBoard.index, gameBoard.value));
 
 // const updateMove = function () {
 //   let update = {
@@ -226,7 +230,7 @@ update.cells.push(new Cell(gameBoard.index, gameBoard.value));
 //       "over": false
 //     }
 //   };
-//   update.game.cell.index = yourMove.gameBoard.index;
+//   update.game.cell.index = yourMove.gameBoard;
 //   update.game.cell.value = yourMove.player.index;
 //   update.game.over = gameOver;
 //   return update;
@@ -237,5 +241,6 @@ module.exports = {
   reset,
   gameBoard,
   player,
-  update,
+  gameOver,
+  // updateMove,
 };
