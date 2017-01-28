@@ -3,6 +3,8 @@
 const api = require('./api.js');
 const ui = require('./ui.js');
 const store = require('../store');
+const game = require('../example');
+
 
 const getFormFields = require('../../../lib/get-form-fields');
 
@@ -11,6 +13,9 @@ const onCreateGame = function (event) {
 
   let data = getFormFields(event.target);
   api.create(data)
+    .then((response) => {
+      store.game = response.game;
+    })
     .then(ui.onPostSuccess)
     .catch(ui.onError);
 };
@@ -36,16 +41,31 @@ const onGetGames = function (event) {
 const onUpdateGame = function (event) {
   event.preventDefault();
 
-  let data = getFormFields(event.target);
+  // let data = getFormFields(event.target);
 
-  api.update(data)
-    .then((response) => {
-      store.game = response.game;
-      return store.game;
-    })
+  api.update(store.game.id, event.target.id, game.player, game.gameOver)
+    // .then((response) => {
+    //   store.game = response.game;
+    //   return store.game;
+    // })
     .then(ui.onPatchSuccess)
-    .catch(ui.onError);
+    .catch(ui.onError)
+    ;
 };
+
+// const onUpdateGame = function (event) {
+//   event.preventDefault();
+//   let data = getFormFields(event.target);
+//
+//   api.update(store.user.id, data)
+//     .then((response) => {
+//       store.game = response.game;
+//       return store.game;
+//     })
+//     // .then(())
+//     .then(ui.onPatchSuccess)
+//     .catch(ui.onError);
+// };
 
 const addHandlers = () => {
   $('#game-search').on('submit', onGetGames);
