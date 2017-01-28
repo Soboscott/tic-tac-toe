@@ -24,8 +24,8 @@ const onUpdateGame = function (event) {
 
   api.update(data)
     .then((response) => {
-      store.data = response.data;
-      return store.data;
+      store.game = response.game;
+      return store.game;
     })
     .then(ui.onPatchSuccess)
     .catch(ui.onError);
@@ -47,8 +47,13 @@ const onGetGames = function (event) {
 
 };
 
+const addHandlers = () => {
+  $('#game-search').on('submit', onGetGames);
+};
+
 module.exports = {
   onGetGames,
   onCreateGame,
   onUpdateGame,
+  addHandlers,
 };
