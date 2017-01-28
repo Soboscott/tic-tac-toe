@@ -54,36 +54,6 @@ const update = function (id, gameIndex, player, gameOver) {
   });
 };
 
-// const update = function (id, data) {
-//   return $.ajax({
-//     url: config.apiOrigin + '/games' + id,
-//     method: 'PATCH',
-//     headers: {
-//       Authorization: `Token token=${store.user.token}`,
-//     },
-//     data,
-//   });
-// };
-
-// const update = function (id) {
-//   return $.ajax({
-//     url: config.apiOrigin + '/games/' + id,
-//     method: 'PATCH',
-//     headers: {
-//       Authorization: `Token token=${store.user.token}`,
-//     },
-    // data: {
-    //   game: {
-    //     cell: {
-    //       index: game.update.cells.index,
-    //       value: game.update.cells.value,
-    //     },
-    //     over: game.update.over,
-    //     },
-    //   },
-//   });
-// };
-
 module.exports = {
   index,
   show,
