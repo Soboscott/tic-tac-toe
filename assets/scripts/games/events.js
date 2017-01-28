@@ -17,20 +17,6 @@ const onCreateGame = function (event) {
 
 //
 
-const onUpdateGame = function (event) {
-  event.preventDefault();
-
-  let data = getFormFields(event.target);
-
-  api.update(data)
-    .then((response) => {
-      store.game = response.game;
-      return store.game;
-    })
-    .then(ui.onPatchSuccess)
-    .catch(ui.onError);
-};
-
 const onGetGames = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
@@ -45,6 +31,20 @@ const onGetGames = function (event) {
     .catch(ui.onError);
   }
 
+};
+
+const onUpdateGame = function (event) {
+  event.preventDefault();
+
+  let data = getFormFields(event.target);
+
+  api.update(data)
+    .then((response) => {
+      store.game = response.game;
+      return store.game;
+    })
+    .then(ui.onPatchSuccess)
+    .catch(ui.onError);
 };
 
 const addHandlers = () => {
