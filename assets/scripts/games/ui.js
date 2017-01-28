@@ -17,7 +17,7 @@ const onPostSuccess =function(data) {
 };
 
 const onPatchSuccess = function (data) {
-  console.log(data);
+  console.log(data.game);
 };
 
 module.exports = {
