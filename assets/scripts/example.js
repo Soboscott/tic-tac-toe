@@ -207,34 +207,6 @@ const yourMove = function (event) {
   return gameBoard;
 };
 
-// const Game = function Games(over) {
-//   this.over = over;
-//   this.cells = [];
-// };
-//
-// const Cell = function Cells(index, value) {
-//   this.index = index;
-//   this.value = value;
-// };
-//
-// let update = new Game(gameOver);
-// update.cells.push(new Cell(gameBoard.index, gameBoard.value));
-
-// const updateMove = function () {
-//   let update = {
-//     "game": {
-//       "cell": {
-//         "index": 0,
-//         "value": "x"
-//       },
-//       "over": false
-//     }
-//   };
-//   update.game.cell.index = yourMove.gameBoard;
-//   update.game.cell.value = yourMove.player.index;
-//   update.game.over = gameOver;
-//   return update;
-// };
 
 module.exports = {
   yourMove,
