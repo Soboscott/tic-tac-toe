@@ -20,8 +20,6 @@ const onCreateGame = function (event) {
     .catch(ui.onError);
 };
 
-//
-
 const onGetGames = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
@@ -52,20 +50,6 @@ const onUpdateGame = function (event) {
     .catch(ui.onError)
     ;
 };
-
-// const onUpdateGame = function (event) {
-//   event.preventDefault();
-//   let data = getFormFields(event.target);
-//
-//   api.update(store.user.id, data)
-//     .then((response) => {
-//       store.game = response.game;
-//       return store.game;
-//     })
-//     // .then(())
-//     .then(ui.onPatchSuccess)
-//     .catch(ui.onError);
-// };
 
 const addHandlers = () => {
   $('#game-search').on('submit', onGetGames);
