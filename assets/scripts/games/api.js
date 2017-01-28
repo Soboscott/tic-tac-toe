@@ -35,7 +35,7 @@ const show = function (id) {
   });
 };
 
-const update = function (id) {
+const update = function (id, gameIndex, player, gameOver) {
   return $.ajax({
     url: config.apiOrigin + '/games/' + id,
     method: 'PATCH',
@@ -43,20 +43,51 @@ const update = function (id) {
       Authorization: `Token token=${store.user.token}`,
     },
     data: {
-      game: {
-        cell: {
-          index: game.update.cells.index,
-          value: game.update.cells.value,
-        },
-        over: game.update.over,
-        },
-      },
+       game: {
+         cell: {
+           index: gameIndex,
+           value: player,
+         },
+         over: gameOver,
+         },
+       },
   });
 };
+
+// const update = function (id, data) {
+//   return $.ajax({
+//     url: config.apiOrigin + '/games' + id,
+//     method: 'PATCH',
+//     headers: {
+//       Authorization: `Token token=${store.user.token}`,
+//     },
+//     data,
+//   });
+// };
+
+// const update = function (id) {
+//   return $.ajax({
+//     url: config.apiOrigin + '/games/' + id,
+//     method: 'PATCH',
+//     headers: {
+//       Authorization: `Token token=${store.user.token}`,
+//     },
+    // data: {
+    //   game: {
+    //     cell: {
+    //       index: game.update.cells.index,
+    //       value: game.update.cells.value,
+    //     },
+    //     over: game.update.over,
+    //     },
+    //   },
+//   });
+// };
 
 module.exports = {
   index,
   show,
   create,
   update,
+  game,
 };
