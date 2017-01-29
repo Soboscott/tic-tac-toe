@@ -36,21 +36,6 @@ const onGetGames = function (event) {
 
 };
 
-const onUpdateGame = function (event) {
-  event.preventDefault();
-
-  // let data = getFormFields(event.target);
-
-  api.update(store.game.id, event.target.id, game.player, game.gameOver)
-    // .then((response) => {
-    //   store.game = response.game;
-    //   return store.game;
-    // })
-    .then(ui.onPatchSuccess)
-    .catch(ui.onError)
-    ;
-};
-
 const addHandlers = () => {
   $('#game-search').on('submit', onGetGames);
 };
@@ -58,6 +43,5 @@ const addHandlers = () => {
 module.exports = {
   onGetGames,
   onCreateGame,
-  onUpdateGame,
   addHandlers,
 };
