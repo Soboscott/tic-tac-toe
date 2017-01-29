@@ -2,17 +2,44 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 @import 'assets/styles/colors';
 
+#board {
+  margin: auto;
+  max-width: 700px;
+}
+
 .box {
   border: 10px solid $black;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   font-size: 72px;
-  height: 200px;
-  margin: auto;
+  height: 150px;
+  margin: 20px;
+  max-width: 150px;
+  overflow: auto;
   text-align: center;
-  width: 200px;
 }
 
 .banner {
   border: 5px solid $black;
   height: 50px;
   width: 200px;
+}
+
+#sign-up {
+  float: left;
+  padding: 50px;
+}
+
+#sign-in {
+  float: left;
+  padding: 50px;
+}
+
+fieldset {
+  float: left;
+}
+
+aside {
+  float: right;
 }
