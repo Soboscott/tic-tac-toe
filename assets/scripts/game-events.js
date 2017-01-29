@@ -7,7 +7,8 @@ const game = require('./example');
 const addHandlers = () => {
 
   //click handlers for boxes and resets
-  $('.newGame').on('click', game.reset);
+  $('#begin').on('click', game.reset);
+  $('#reset').on('click', game.reset);
   $('#0').on('click', game.yourMove);
   $('#1').on('click', game.yourMove);
   $('#2').on('click', game.yourMove);
