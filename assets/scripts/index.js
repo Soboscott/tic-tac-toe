@@ -28,5 +28,5 @@ $(() => {
 
 $(() => {
   $('#game-search').on('submit', gameEvents.onGetGames);
-  $('.newGame').on('click', gameEvents.onCreateGame);
+  $('.new-game').on('click', gameEvents.onCreateGame);
 });
