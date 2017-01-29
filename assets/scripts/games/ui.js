@@ -16,13 +16,13 @@ const onPostSuccess =function(data) {
   console.log(data);
 };
 
-const onPatchSuccess = function (data) {
-  console.log(data.game);
-};
+// const onPatchSuccess = function (data) {
+//   console.log(data);
+// };
 
 module.exports = {
   onSuccess,
   onError,
   onPostSuccess,
-  onPatchSuccess,
+  // onPatchSuccess,
 };
