@@ -43,14 +43,14 @@ const update = function (id, gameIndex, player, gameOver) {
       Authorization: `Token token=${store.user.token}`,
     },
     data: {
-       game: {
-         cell: {
-           index: gameIndex,
-           value: player,
-         },
-         over: gameOver,
-         },
-       },
+      game: {
+        cell: {
+          index: gameIndex,
+          value: player,
+        },
+        over: gameOver,
+      },
+    },
   });
 };
 

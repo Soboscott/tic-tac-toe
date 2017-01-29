@@ -1,9 +1,7 @@
 'use strict';
 
-// const api = require('./games/api.js');
 const ui = require('./games/ui.js');
 const store = require('./store');
-// const setAPIOrigin = require('../../lib/set-api-origin');
 const config = require('./config');
 
 let gameBoard = [
@@ -12,12 +10,8 @@ let gameBoard = [
     '-', '-', '-',
   ];
 
-// let player = [
-//   'x',
-//   'o',
-// ];
-
-let player = "X";
+//default variables for things that could switch after each move
+let player = 'X';
 
 let spotTaken = false;
 
@@ -29,24 +23,26 @@ let turn = 0;
 
 const reset = function () {
 
-  // event.target.id = 'reset';
-  //reassigns gameBoard to a blank board
-  // event.target.id;
+  //reassigns gameBoard to a blank array
   gameBoard = [
       '-', '-', '-',
       '-', '-', '-',
       '-', '-', '-',
     ];
 
-  //reassigns fullBoard to default
+  //reassigns fullBoard status and gameOver status to default
   fullBoard = false;
+  gameOver = false;
+
+  //empties the board visually
   $('.banner').text('');
   $('.box').text('');
-  gameOver = false;
-  return gameBoard;
+
+  return;
 };
 
 const threeInARow = function (player, cellOne, cellTwo, cellThree) {
+
   //determines if selected cells are all equal to the same player
   if ((cellOne === player) && (cellTwo === player) && (cellThree === player)) {
 
@@ -61,8 +57,12 @@ const winRow = function (player) {
   threeInARow(player, gameBoard[3], gameBoard[4], gameBoard[5]) ||
   threeInARow(player, gameBoard[6], gameBoard[7], gameBoard[8])) {
 
+    //Displays a visual for the user indicating a win
     $('.banner').text("Congratulations! Player '" + player + "' is the winner!");
+
+    //reassigns gameOver status as true to end the game
     gameOver = true;
+
     return;
   } else {
 
@@ -79,6 +79,7 @@ const winColumn = function (player) {
 
     $('.banner').text("Congratulations! Player '" + player + "' is the winner!");
     gameOver = true;
+
     return;
   } else {
 
@@ -108,8 +109,10 @@ const tieGame = function () {
   if (fullBoard === true && winRow(player) === false && winColumn(player) === false && winDiag(player) === false) {
     $('.banner').text('Well played! Tie Game!');
     gameOver = true;
+
     return;
   } else {
+
     return false;
   }
 };
@@ -156,13 +159,8 @@ const getWinner = function () {
   }
 };
 
-//prints out the board in the console for visual reference
-// const printBoard = function () {
-//   for (let i = 0; i < gameBoard.length; i += 3) {
-//     console.log(gameBoard[i] + ' ' + gameBoard[i + 1] + ' ' + gameBoard[i + 2]);
-//   }
-// };
-
+//patches or updates the game online
+//takes parameters that PATCH looks for when onUpdateGame is run
 const update = function (id, gameIndex, player, gameOver) {
   return $.ajax({
     url: config.apiOrigin + '/games/' + id,
@@ -171,22 +169,19 @@ const update = function (id, gameIndex, player, gameOver) {
       Authorization: `Token token=${store.user.token}`,
     },
     data: {
-       game: {
-         cell: {
-           index: gameIndex,
-           value: player,
-         },
-         over: gameOver,
-         },
-       },
+      game: {
+        cell: {
+          index: gameIndex,
+          value: player,
+        },
+        over: gameOver,
+      },
+    },
   });
 };
 
+//points update function to look at game id, gameBoard index, player, and gameOver status
 const onUpdateGame = function () {
-  // event.preventDefault();
-
-  // let data = getFormFields(event.target);
-
   update(store.game.id, event.target.id, player, gameOver)
 
     .then(ui.onSuccess)
@@ -213,7 +208,7 @@ const yourMove = function (event) {
   if (spotTaken === true && fullBoard === false) {
     $('.banner').text('Please pick somewhere else!');
 
-    //if spotTaken is false, the next person can move
+  //if spotTaken is false, the next person can move
   } else if (gameOver === true) {
     return;
   } else if (spotTaken === false) {
@@ -222,10 +217,10 @@ const yourMove = function (event) {
 
     //every other turn is x or o
     if (turn % 2 === 0) {
-      player = "O";
+      player = 'O';
       gameBoard[index] = player;
     } else {
-      player = "X";
+      player = 'X';
       gameBoard[index] = player;
     }
 
@@ -238,13 +233,14 @@ const yourMove = function (event) {
     }
   }
 
-  // printBoard();
+  //check for winner
   getWinner();
-  onUpdateGame();
-  // console.log(gameBoard);
-  return gameBoard;
-};
 
+  //updates the game to the server
+  onUpdateGame();
+
+  return;
+};
 
 module.exports = {
   yourMove,
@@ -252,5 +248,4 @@ module.exports = {
   gameBoard,
   player,
   gameOver,
-  // updateMove,
 };
