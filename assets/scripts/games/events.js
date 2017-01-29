@@ -24,18 +24,17 @@ const onGetGames = function (event) {
 
   if (data.game.id.length === 0) {
     api.index()
-    .then(ui.onSuccess)
+    .then(ui.onIndexSuccess)
     .catch(ui.onError);
   } else {
     api.show(data.game.id)
-    .then(ui.onSuccess)
+    .then(ui.onGetSuccess)
     .catch(ui.onError);
   }
-
 };
 
 const addHandlers = () => {
-  $('#game-search').on('submit', onGetGames);
+  $('#search-submit').on('submit', onGetGames);
 };
 
 module.exports = {
