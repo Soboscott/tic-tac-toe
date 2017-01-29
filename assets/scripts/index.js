@@ -29,5 +29,4 @@ $(() => {
 $(() => {
   $('#game-search').on('submit', gameEvents.onGetGames);
   $('#reset').on('click', gameEvents.onCreateGame);
-  $('.box').on('click', gameEvents.onUpdateGame);
 });
