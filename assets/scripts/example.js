@@ -206,13 +206,13 @@ const yourMove = function (event) {
   //sets condition for what happens when the spotTaken is true
   //cannot move forward, must pick a different spot
   if (spotTaken === true && fullBoard === false) {
-    $('.banner').text('Please pick somewhere else!');
+    $('#winner-status').text('Please pick somewhere else!');
 
   //if spotTaken is false, the next person can move
   } else if (gameOver === true) {
     return;
   } else if (spotTaken === false) {
-    $('.banner').text('');
+    $('#winner-status').text('');
     turn++;
 
     //every other turn is x or o
