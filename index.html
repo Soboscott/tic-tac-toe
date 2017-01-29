@@ -12,29 +12,29 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
-      <h1>Tic Tac Toe</h1>
+      <h1>tic tac toe</h1>
       <form id="sign-up">
         <fieldset>
-          <legend>Sign up!</legend>
+          <legend>sign up</legend>
           <label>
-            Email
+            email
             <input type="text" name="credentials[email]">
           </label>
           <label>
-            Password
+            password
             <input type="password" name="credentials[password]">
           </label>
           <label>
-            Password Confirmation
+            password confirmation
             <input type="password" name="credentials[password_confirmation]">
           </label>
-          <input type="submit" name="submit" value="Sign up!">
+          <input type="submit" name="submit" value="sign up">
         </fieldset>
       </form>
 
       <form id="sign-in">
         <fieldset>
-          <legend>Sign in!</legend>
+          <legend>sign in</legend>
           <label>
             Email
             <input type="text" name="credentials[email]">
@@ -43,31 +43,34 @@
           Password
           <input type="password" name="credentials[password]">
         </label>
-        <input type="submit" name="submit" value="Sign in!">
+        <input type="submit" name="submit" value="sign in">
         </fieldset>
       </form>
 
       <form id="change-password">
         <fieldset>
-          <legend>Change your password!</legend>
+          <legend>tired of your old password?</legend>
           <label>
-            Current Password
+            current password
             <input type="password" name="passwords[old]">
           </label>
           <label>
-          New Password
+          new password
           <input type="password" name="passwords[new]">
         </label>
-        <input type="submit" name="submit" value="Change!">
+        <input type="submit" name="submit" value="change">
         </fieldset>
       </form>
 
       <form id="sign-out">
         <fieldset>
-          <legend>Sign Out!</legend>
-          <input type="submit" name="submit" value="Sign Out!">
+          <legend>sign out</legend>
+          <input type="submit" name="submit" value="sign out">
         </fieldset>
       </form>
+      <div class="reset-gameBoard">
+        <button id="begin">start a new game</button>
+      </div>
       <div class="board">
         <div class="row">
           <div class="col-xs-4 box" id="0"></div>
@@ -87,13 +90,13 @@
       </div>
     <div class="banner"></div>
     <div class="reset-gameBoard">
-      <button id="reset">Play Again!</button>
+      <button id="reset">play again?</button>
     </div>
     <form class="games" id="game-search">
       <div class="form-group">
         <input type="text" name="game[id]" placeholder="ID of game to search">
       </div>
-      <button type="submit" class="btn btn-default">Check out your old games!</button>
+      <button type="submit" class="btn btn-default">look at old games</button>
     </form>
     </body>
 </html>
