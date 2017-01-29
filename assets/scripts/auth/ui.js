@@ -11,14 +11,14 @@ const signInSuccess = (data) => {
     console.log(data);
   }
 
-    $('#sign-in').hide();
-    $('#sign-up').hide();
-    $('#change-password').show();
-    $('#sign-out').show();
-    $('#begin').show();
-    $('#game-search').show();
-    $('#search-result').show();
-  };
+  $('#sign-in').hide();
+  $('#sign-up').hide();
+  $('#change-password').show();
+  $('#sign-out').show();
+  $('#begin').show();
+  $('#game-search').show();
+  $('#search-result').show();
+};
 
 const failure = (error) => {
   console.error(error);
