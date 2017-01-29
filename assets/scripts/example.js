@@ -35,7 +35,7 @@ const reset = function () {
   gameOver = false;
 
   //empties the board visually
-  $('.banner').text('');
+  $('#winner-status').text('');
   $('.box').text('');
 
   return;
@@ -58,7 +58,7 @@ const winRow = function (player) {
   threeInARow(player, gameBoard[6], gameBoard[7], gameBoard[8])) {
 
     //Displays a visual for the user indicating a win
-    $('.banner').text("Congratulations! Player '" + player + "' is the winner!");
+    $('#winner-status').text("Congratulations! Player '" + player + "' is the winner!");
 
     //reassigns gameOver status as true to end the game
     gameOver = true;
@@ -77,7 +77,7 @@ const winColumn = function (player) {
   threeInARow(player, gameBoard[1], gameBoard[4], gameBoard[7]) ||
   threeInARow(player, gameBoard[2], gameBoard[5], gameBoard[8])) {
 
-    $('.banner').text("Congratulations! Player '" + player + "' is the winner!");
+    $('#winner-status').text("Congratulations! Player '" + player + "' is the winner!");
     gameOver = true;
 
     return;
@@ -93,7 +93,7 @@ const winDiag = function (player) {
   if (threeInARow(player, gameBoard[0], gameBoard[4], gameBoard[8]) ||
   threeInARow(player, gameBoard[2], gameBoard[4], gameBoard[6])) {
 
-    $('.banner').text("Congratulations! Player '" + player + "' is the winner!");
+    $('#winner-status').text("Congratulations! Player '" + player + "' is the winner!");
     gameOver = true;
 
     return;
@@ -107,7 +107,7 @@ const tieGame = function () {
 
   //tests if the board is full AND if there's no winner
   if (fullBoard === true && winRow(player) === false && winColumn(player) === false && winDiag(player) === false) {
-    $('.banner').text('Well played! Tie Game!');
+    $('#winner-status').text('Well played! Tie Game!');
     gameOver = true;
 
     return;
