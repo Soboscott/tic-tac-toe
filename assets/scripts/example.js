@@ -1,5 +1,11 @@
 'use strict';
 
+// const api = require('./games/api.js');
+const ui = require('./games/ui.js');
+const store = require('./store');
+// const setAPIOrigin = require('../../lib/set-api-origin');
+const config = require('./config');
+
 let gameBoard = [
     '-', '-', '-',
     '-', '-', '-',
@@ -157,6 +163,37 @@ const getWinner = function () {
 //   }
 // };
 
+const update = function (id, gameIndex, player, gameOver) {
+  return $.ajax({
+    url: config.apiOrigin + '/games/' + id,
+    method: 'PATCH',
+    headers: {
+      Authorization: `Token token=${store.user.token}`,
+    },
+    data: {
+       game: {
+         cell: {
+           index: gameIndex,
+           value: player,
+         },
+         over: gameOver,
+         },
+       },
+  });
+};
+
+const onUpdateGame = function () {
+  // event.preventDefault();
+
+  // let data = getFormFields(event.target);
+
+  update(store.game.id, event.target.id, player, gameOver)
+
+    .then(ui.onSuccess)
+    .catch(ui.onError)
+    ;
+};
+
 const yourMove = function (event) {
   let index = event.target.id;
 
@@ -203,7 +240,8 @@ const yourMove = function (event) {
 
   // printBoard();
   getWinner();
-  console.log(gameBoard);
+  onUpdateGame();
+  // console.log(gameBoard);
   return gameBoard;
 };
 
