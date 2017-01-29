@@ -184,7 +184,7 @@ const update = function (id, gameIndex, player, gameOver) {
 const onUpdateGame = function () {
   update(store.game.id, event.target.id, player, gameOver)
 
-    .then(ui.onSuccess)
+    .then(ui.onPatchSuccess)
     .catch(ui.onError)
     ;
 };
