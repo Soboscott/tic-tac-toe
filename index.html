@@ -16,18 +16,30 @@
       <form id="sign-up">
         <fieldset>
           <legend>sign up</legend>
+          <div class="email-label">
           <label>
             email
-            <input type="text" name="credentials[email]">
           </label>
+            <div class="email-input">
+            <input type="text" name="credentials[email]">
+          </div>
+        </div>
+        <div class="password-label">
           <label>
             password
-            <input type="password" name="credentials[password]">
           </label>
+            <div class="password-input">
+            <input type="password" name="credentials[password]">
+          </div>
+        </div>
+        <div class="password-label">
           <label>
             password confirmation
-            <input type="password" name="credentials[password_confirmation]">
           </label>
+            <div class="password-input">
+            <input type="password" name="credentials[password_confirmation]">
+          </div>
+        </div>
           <input type="submit" name="submit" value="sign up">
         </fieldset>
       </form>
@@ -35,30 +47,47 @@
       <form id="sign-in">
         <fieldset>
           <legend>sign in</legend>
+          <div class="email-label">
           <label>
             Email
-            <input type="text" name="credentials[email]">
           </label>
+          <div class="email-input">
+            <input type="text" name="credentials[email]">
+          </div>
+        </div>
+        <div class="password-label">
           <label>
           Password
-          <input type="password" name="credentials[password]">
         </label>
-        <input type="submit" name="submit" value="sign in">
+        <div class="password-input">
+          <input type="password" name="credentials[password]">
+        </div>
+      </div>
+      <div class="password-submit">
+        <input type="submit" name="submit" id="enter-password" value="sign in">
+      </div>
         </fieldset>
       </form>
 
+      <aside>
       <form id="change-password">
         <fieldset>
           <legend>tired of your old password?</legend>
           <label>
             current password
-            <input type="password" name="passwords[old]">
           </label>
+          <div class="password-input">
+            <input type="password" name="passwords[old]">
+          </div>
           <label>
           new password
-          <input type="password" name="passwords[new]">
         </label>
+          <div class="password-input">
+          <input type="password" name="passwords[new]">
+        </div>
+        <div class="password-submit">
         <input type="submit" name="submit" value="change">
+      </div>
         </fieldset>
       </form>
 
@@ -69,9 +98,11 @@
         </fieldset>
       </form>
       <div class="reset-gameBoard">
-        <button id="begin">start a new game</button>
+        <button class="newGame" id="begin">start a new game</button>
       </div>
-      <div class="board">
+      <div class="banner" id="winner-status"></div>
+    </aside>
+      <div id="board">
         <div class="row">
           <div class="col-xs-4 box" id="0"></div>
           <div class="col-xs-4 box" id="1"></div>
@@ -88,15 +119,15 @@
           <div class="col-xs-4 box" id="8"></div>
         </div>
       </div>
-    <div class="banner"></div>
     <div class="reset-gameBoard">
-      <button id="reset">play again?</button>
+      <button class="newGame" id="reset">play again?</button>
     </div>
     <form class="games" id="game-search">
       <div class="form-group">
         <input type="text" name="game[id]" placeholder="ID of game to search">
       </div>
-      <button type="submit" class="btn btn-default">look at old games</button>
+      <button type="submit" class="btn btn-default" id="search-submit">look at old games</button>
+      <div class="banner" id="search-result"></div>
     </form>
     </body>
 </html>
