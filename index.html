@@ -13,95 +13,6 @@
     </head>
     <body class="container-fluid">
       <h1>tic tac toe</h1>
-      <form id="sign-up">
-        <fieldset>
-          <legend>sign up</legend>
-          <div class="email-label">
-          <label>
-            email
-          </label>
-            <div class="email-input">
-            <input type="text" name="credentials[email]">
-          </div>
-        </div>
-        <div class="password-label">
-          <label>
-            password
-          </label>
-            <div class="password-input">
-            <input type="password" name="credentials[password]">
-          </div>
-        </div>
-        <div class="password-label">
-          <label>
-            password confirmation
-          </label>
-            <div class="password-input">
-            <input type="password" name="credentials[password_confirmation]">
-          </div>
-        </div>
-          <input type="submit" name="submit" value="sign up">
-        </fieldset>
-      </form>
-
-      <form id="sign-in">
-        <fieldset>
-          <legend>sign in</legend>
-          <div class="email-label">
-          <label>
-            Email
-          </label>
-          <div class="email-input">
-            <input type="text" name="credentials[email]">
-          </div>
-        </div>
-        <div class="password-label">
-          <label>
-          Password
-        </label>
-        <div class="password-input">
-          <input type="password" name="credentials[password]">
-        </div>
-      </div>
-      <div class="password-submit">
-        <input type="submit" name="submit" id="enter-password" value="sign in">
-      </div>
-        </fieldset>
-      </form>
-
-      <aside>
-      <form id="change-password">
-        <fieldset>
-          <legend>tired of your old password?</legend>
-          <label>
-            current password
-          </label>
-          <div class="password-input">
-            <input type="password" name="passwords[old]">
-          </div>
-          <label>
-          new password
-        </label>
-          <div class="password-input">
-          <input type="password" name="passwords[new]">
-        </div>
-        <div class="password-submit">
-        <input type="submit" name="submit" value="change">
-      </div>
-        </fieldset>
-      </form>
-
-      <form id="sign-out">
-        <fieldset>
-          <legend>sign out</legend>
-          <input type="submit" name="submit" value="sign out">
-        </fieldset>
-      </form>
-      <div class="reset-gameBoard">
-        <button class="newGame" id="begin">start a new game</button>
-      </div>
-      <div class="banner" id="winner-status"></div>
-    </aside>
       <div id="board">
         <div class="row">
           <div class="col-xs-4 box" id="0"></div>
@@ -119,15 +30,104 @@
           <div class="col-xs-4 box" id="8"></div>
         </div>
       </div>
-    <div class="reset-gameBoard">
-      <button class="newGame" id="reset">play again?</button>
-    </div>
-    <form class="games" id="game-search">
-      <div class="form-group">
-        <input type="text" name="game[id]" placeholder="ID of game to search">
-      </div>
-      <button type="submit" class="btn btn-default" id="search-submit">look at old games</button>
-      <div class="banner" id="search-result"></div>
+      <form id="sign-up">
+        <fieldset>
+          <legend>sign up</legend>
+          <div class="email-label">
+          <label>
+            email
+          </label>
+            <div class="email-input">
+              <input type="text" name="credentials[email]">
+          </div>
+        </div>
+        <div class="password-label">
+          <label>
+            password
+          </label>
+            <div class="password-input">
+              <input type="password" name="credentials[password]">
+          </div>
+        </div>
+        <div class="password-label">
+          <label>
+            password confirmation
+          </label>
+          <div class="password-input">
+            <input type="password" name="credentials[password_confirmation]">
+          </div>
+        </div>
+        <input type="submit" name="submit" value="sign up">
+      </fieldset>
     </form>
+
+      <form id="sign-in">
+        <fieldset>
+          <legend>sign in</legend>
+          <div class="email-label">
+            <label>
+              Email
+            </label>
+            <div class="email-input">
+              <input type="text" name="credentials[email]">
+            </div>
+          </div>
+          <div class="password-label">
+            <label>
+              Password
+            </label>
+            <div class="password-input">
+              <input type="password" name="credentials[password]">
+            </div>
+          </div>
+          <div class="password-submit">
+            <input type="submit" name="submit" id="enter-password" value="sign in">
+          </div>
+        </fieldset>
+      </form>
+
+      <div id="logout-info">
+        <form id="change-password">
+          <fieldset>
+            <legend>tired of your old password?</legend>
+            <label>
+              current password
+            </label>
+            <div class="password-input">
+              <input type="password" name="passwords[old]">
+            </div>
+            <label>
+              new password
+            </label>
+            <div class="password-input">
+              <input type="password" name="passwords[new]">
+            </div>
+            <div class="password-submit">
+              <input type="submit" name="submit" value="change">
+            </div>
+          </fieldset>
+        </form>
+
+        <form id="sign-out">
+          <fieldset>
+            <legend>sign out</legend>
+            <input type="submit" name="submit" value="sign out">
+          </fieldset>
+        </form>
+      </div>
+      <div id="reset-search">
+        <div class="reset-gameBoard">
+          <button class="new-game" id="begin">start a new game</button>
+          <button class="new-game" id="reset">play again?</button>
+        </div>
+        <div class="banner" id="winner-status"></div>
+        <form class="games" id="game-search">
+          <div class="form-group">
+            <input type="text" name="game[id]" placeholder="ID of game to search">
+          </div>
+          <button type="submit" class="btn btn-default" id="search-submit">look at old games</button>
+          <div class="banner clearfix" id="search-result"></div>
+        </form>
+      </div>
     </body>
 </html>
