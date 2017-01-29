@@ -3,8 +3,6 @@
 const api = require('./api.js');
 const ui = require('./ui.js');
 const store = require('../store');
-const game = require('../example');
-
 
 const getFormFields = require('../../../lib/get-form-fields');
 
