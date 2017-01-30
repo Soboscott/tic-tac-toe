@@ -18,8 +18,8 @@
 
 # [Wireframe] (http://imgur.com/8p4uFiM)
 # User Stories:
--As a user, I can create a new account with a password to save my wins/losses record
--As a user, I can log in to add to my record.
--As a user, I can change my password if I get tired of it.
--As a user, I can play tic tac toe.
--As a user, I can log out.
+  - As a user, I can create a new account with a password to save my wins/losses record.
+  - As a user, I can log in to add to my record.
+  - As a user, I can change my password if I get tired of it.
+  - As a user, I can play tic tac toe.
+  - As a user, I can log out.
