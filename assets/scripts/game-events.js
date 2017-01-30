@@ -28,11 +28,6 @@ const addHandlers = () => {
   $('#reset').hide();
   $('#begin').hide();
 
-  //screen changes once someone clicks sign-up, can't sign up again
-  $('#sign-up').on('submit', () => {
-    $('#sign-up').hide();
-  });
-
   //board doesn't show up until you start a new game
   $('#begin').on('click', () => {
     $('#begin').hide();
