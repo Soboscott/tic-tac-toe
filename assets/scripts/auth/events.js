@@ -13,8 +13,8 @@ const onSignUp = function (event) {
   let data = getFormFields(event.target);
 
   api.signUp(data)
-    .then(ui.success)
-    .catch(ui.failure)
+    .then(ui.signUpSuccess)
+    .catch(ui.emailFailure)
     ;
 };
 
