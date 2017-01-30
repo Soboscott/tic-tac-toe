@@ -29,9 +29,25 @@ const signInFailure = (error) => {
   $('#enter-password').val('please try again.');
 };
 
+const signUpSuccess = (data) => {
+  if (data) {
+    console.log(data);
+  }
+  $('#sign-up').hide();
+};
+
+const emailFailure = (error) => {
+  console.error(error);
+  $('#sign-up-button').val('try a different email or check your password');
+};
+
+
+
 module.exports = {
   failure,
   success,
   signInFailure,
   signInSuccess,
+  signUpSuccess,
+  emailFailure,
 };
