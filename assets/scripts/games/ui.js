@@ -12,7 +12,7 @@ const onIndexSuccess = function (data) {
   if (data.games) {
     console.log(data.games);
     for (let i = 0; i < data.games.length; i++) {
-      $('#search-result').text(data.games);
+      $('#search-result').text('You played this game ' + data.games.length + ' times!');
     }
   }
 };
