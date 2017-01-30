@@ -30,9 +30,10 @@ const reset = function () {
       '-', '-', '-',
     ];
 
-  //reassigns fullBoard status, player, and gameOver status to default
+  //reassigns fullBoard status, player, turn, and gameOver status to default
   fullBoard = false;
   gameOver = false;
+  turn = 0;
   player = 'X';
 
   //empties the board visually
