@@ -11,11 +11,11 @@ const onSuccess = function (data) {
 const onIndexSuccess = function (data) {
   if (data.games) {
     console.log(data.games);
-    // for (let i = 0; i < data.games.length; i++) {
-      $('#search-result').text('You played this game ' + data.games.length + ' times!');
+    for (let i = 0; i < data.games.length; i++) {
+      $('#search-result').text('You played this game ' + data.games.length + ' times! ');
       // $('#search-result').append(' You won this game ' + data.games[i].over[true].length + ' times!');
-      // $('#search-result').text(data.games[i].id + ": " + data.games[i].cells);
-    // }
+      $('#search-result').append("Most recent game: " + data.games[i].id + ": " + data.games[i].cells);
+    }
   }
 };
 
