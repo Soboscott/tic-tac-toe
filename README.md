@@ -1,4 +1,4 @@
-[Lauren's first game](https://laurpaik.github.io/tic-tac-toe/)
+# [Lauren's first game](https://laurpaik.github.io/tic-tac-toe/)
 
 # Technologies Used
 
