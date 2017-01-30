@@ -13,6 +13,7 @@ const onIndexSuccess = function (data) {
     console.log(data.games);
     for (let i = 0; i < data.games.length; i++) {
       $('#search-result').text('You played this game ' + data.games.length + ' times!');
+      // $('#search-result').text(data.games[i].id + ": " + data.games[i].cells);
     }
   }
 };
