@@ -1,6 +1,10 @@
 # [Lauren's first game](https://laurpaik.github.io/tic-tac-toe/)
 
 # Technologies Used
+  - JavaScript
+  - HTML
+  - CSS
+  - AJAX
 
 # My journey with Tic Tac Toe
 
