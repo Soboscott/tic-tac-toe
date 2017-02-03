@@ -207,7 +207,7 @@ const yourMove = function (event) {
 
   //sets condition for what happens when the spotTaken is true
   //cannot move forward, must pick a different spot
-  if (spotTaken === true && fullBoard === false) {
+  if (spotTaken === true && fullBoard === false && gameOver === false) {
     $('#winner-status').text('Please pick somewhere else!');
 
   //if spotTaken is false, the next person can move
@@ -233,13 +233,12 @@ const yourMove = function (event) {
         this.innerText = player[i];
       }
     }
+    //check for winner
+    getWinner();
+
+    //updates the game to the server
+    onUpdateGame();
   }
-
-  //check for winner
-  getWinner();
-
-  //updates the game to the server
-  onUpdateGame();
 
   return;
 };
