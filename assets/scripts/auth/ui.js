@@ -8,7 +8,7 @@ const success = (data) => {
 
 const signInSuccess = (data) => {
   if (data) {
-    console.log(data);
+    console.log("ID: " + data.id, ", Email: " + data.email);
   }
 
   $('#sign-in').hide();
